@@ -16,6 +16,7 @@ export class AppComponent {
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
     this.user = new User();
+    
     this.matIconRegistry.addSvgIcon('exit_to_app',
                                     this.domSanitizer.bypassSecurityTrustResourceUrl(constants.assetsUrl + 'exit_to_app-24px.svg'));
   }

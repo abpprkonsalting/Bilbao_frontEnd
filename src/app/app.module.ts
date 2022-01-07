@@ -9,7 +9,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatMenuModule } from '@angular/material/menu';
 import { HttpClientModule  } from '@angular/common/http';
 
 @NgModule({
@@ -25,7 +24,6 @@ import { HttpClientModule  } from '@angular/common/http';
     MatIconModule,
     MatButtonModule,
     FlexLayoutModule,
-    MatMenuModule,
     HttpClientModule
   ],
   providers: [],
