@@ -8,10 +8,8 @@ export class User {
   // imageUrl: string;
   roles: string[];
   email: string;
-  new: string = '';
 
-  constructor(id?: number, username?: string, password?: string, name?: string, surname?: string, imageUrl?: string,
-              roles?: string[], email?: string) {
+  constructor(id?: number, username?: string, password?: string, roles?: string[], email?: string) {
     id != null ? this.id = id : this.id = 0;
     email != null ? this.email = email : this.email = '';
     // name != null ? this.name = name : this.name = '';

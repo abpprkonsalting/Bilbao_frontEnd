@@ -12,7 +12,7 @@
             </button>
             <a href="/" style="margin-right: auto;"><img id="insta-share-logo" src="{{logoUrl}}" style="height: 37px;"></a>
     
-            <div *ngIf="user.roles.length > 0 && user.name != null && user.name != ''" fxHide.xs style="margin: 0 auto 0 20px;color:#3f51b5"> {{user.name + " " + user.surname}}</div>
+            <div *ngIf="user.roles.length > 0 && user.email != null && user.email != ''" fxHide.xs style="margin: 0 auto 0 20px;color:#3f51b5"> {{user.email}}</div>
     
             <div fxHide.xs fxShow.sm>
     
