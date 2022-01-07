@@ -11,9 +11,4 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  mouseDown() {
-    console.log('mouseDown');
-  }
-
 }
