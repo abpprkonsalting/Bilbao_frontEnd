@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Optional } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,11 +17,11 @@ import { LoginDialogData } from 'src/app/infrastructure/interfaces/login-dialog-
 export class AppComponent {
   title = 'FrontEnd';
   user: User;
-  loginDialog!: MatDialog;
 
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, loginDialog: MatDialog) {
+  constructor( private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, 
+                @Optional() public loginDialog: MatDialog) {
     this.user = new User();
-    this.loginDialog = loginDialog;
+    
 
     this.matIconRegistry.addSvgIcon('exit_to_app',
                                     this.domSanitizer.bypassSecurityTrustResourceUrl(constants.assetsUrl + 'exit_to_app-24px.svg'));
