@@ -1,27 +1,34 @@
-<div class="header-container" ngClass.xs="is-mobile" color="primary" fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="center center" (mousedown)="mouseDown($event)">
+<div class="header-container" ngClass.xs="is-mobile" color="primary" fxLayout="row wrap" fxLayoutGap="0.5%"
+    fxLayoutAlign="center center" (mousedown)="mouseDown($event)">
     <div class="toolbar-container">
-        <div class="toolbar-shadow" fxHide.xs ></div>
-        <mat-toolbar class="toolbar" [ngClass.xs]="{'is-mobile':true}" color="primary" fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="start center">
-    
-          <div class="toolbar-shadow" fxShow.xs fxHide.sm fxHide.md fxHide.lg fxHide.xl ></div>
-    
-          <div style="width:100%" color="primary" fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutAlign.xs="start center">
-    
-            <a href="/" style="margin-right: auto;"><img id="insta-share-logo" src="{{logoUrl}}" style="height: 37px;"></a>
-    
-            <div *ngIf="user.roles.length > 0 && user.email != null && user.email != ''" fxHide.xs style="margin: 0 auto 0 20px;color:#3f51b5"> {{user.email}}</div>
-    
-            <div ngStyle.xs="margin-left:auto;">
-    
-              <button mat-button class="menu-item-first-level login-button" ngClass.xs="is-mobile" (click)="loginLogout()">
-                <mat-icon class="icon-login" [ngClass]="{'not-logged' : user.roles.length == 0}" svgIcon="exit_to_app"></mat-icon>
-                <span>{{user.roles.length == 0 ? "Login" : "Logout"}}</span>
-              </button>
-    
+        <div class="toolbar-shadow" fxHide.xs></div>
+        <mat-toolbar class="toolbar" [ngClass.xs]="{'is-mobile':true}" color="primary" fxLayout="row wrap"
+            fxLayoutGap="0.5%" fxLayoutAlign="start center">
+
+            <div class="toolbar-shadow" fxShow.xs fxHide.sm fxHide.md fxHide.lg fxHide.xl></div>
+
+            <div style="width:100%" color="primary" fxLayout="row wrap" fxLayoutAlign="end center"
+                fxLayoutAlign.xs="start center">
+
+                <a href="/" style="margin-right: auto;"><img id="insta-share-logo" src="{{logoUrl}}"
+                        style="height: 37px;"></a>
+
+                <div *ngIf="user.roles.length > 0 && user.email != null && user.email != ''" fxHide.xs
+                    style="margin: 0 auto 0 20px;color:#3f51b5"> {{user.email}}</div>
+
+                <div ngStyle.xs="margin-left:auto;">
+
+                    <button mat-button class="menu-item-first-level login-button" ngClass.xs="is-mobile"
+                        (click)="loginLogout()">
+                        <mat-icon class="icon-login" [ngClass]="{'not-logged' : user.roles.length == 0}"
+                            svgIcon="exit_to_app"></mat-icon>
+                        <span>{{user.roles.length == 0 ? "Login" : "Logout"}}</span>
+                    </button>
+
+                </div>
+
             </div>
-    
-          </div>
-    
+
         </mat-toolbar>
-      </div>
-  </div>
+    </div>
+</div>
