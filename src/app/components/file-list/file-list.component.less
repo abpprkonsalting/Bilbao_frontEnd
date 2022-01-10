@@ -1,0 +1,143 @@
+.list-content-wrapper {
+
+    height: 100%;
+    margin-top: 80px;
+    padding: 0 40px;
+
+    &.mobile {
+      
+    }
+  
+    .list-header {
+        width: 100%;
+        text-transform: uppercase;
+
+        .select-all-wrapper {
+            display: flex;
+            margin:auto 0;
+        }
+        .list-title {
+            margin: auto 0;
+
+            span {
+                font-size: 18px;
+                vertical-align: middle;
+            }
+          }
+    }
+  
+    .cards-wrapper {
+      
+        width: 100%;
+        background: #f9f9f9;
+        border: 1px solid #f0f0f0;
+        padding: 10px 0;
+      
+      &.mobile {
+        align-items: center;
+      }
+  
+      .file-wrapper {
+        width: 30%;
+        margin-bottom:10px;
+        &.mobile {
+          width:100%;
+          
+        }
+  
+        .mat-icon-download-wrapper {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+
+            .mat-icon-download {
+                margin: auto auto;
+            }
+        }
+
+        .whole-file {
+            width: 100%;
+            background: #e6e6e6;
+            margin-top: 0;
+  
+          &.selected {
+            background:lightblue;
+          }
+  
+          &.semi-selected {
+            background:#d4f0f9;
+          }
+  
+          .mat-expansion-indicator {
+            align-self: center;
+          }
+          .file {
+            width:100%;
+            background:#e6e6e6;
+            padding: 16px 0;
+  
+            &.selected {
+              background:lightblue;
+            }
+  
+            &.semi-selected {
+              background:#d4f0f9;
+            }
+  
+            .file-title {
+              width: 100%;
+              text-align:center;
+              text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+  
+              &.mobile {
+                place-content: flex-start;
+                text-align: left;
+              }
+  
+              span {
+                font-weight: 100;
+                font-size:16px;
+                max-width: 100% !important;
+                padding-right: 10px;
+                text-align: right;
+                &.mobile {
+                  text-align:left;
+                }
+              }
+            }
+  
+            .steps-button-icon {
+              font-size: 100px;
+              height: 100px;
+              width: 100px;
+              margin: 20px;
+  
+              &.mobile {
+                font-size: 30px;
+                height: 30px;
+                width: 30px ;
+                margin: 0 15px;
+              }
+            }
+          }
+          .file-properties {
+            font-size: 16px;
+            margin-bottom: 10px;
+            .file-properties-divider {
+                margin-right: 10px;
+            }
+  
+          }
+          
+        }
+  
+  
+      }
+  
+  
+    }
+  }
+  

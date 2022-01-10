@@ -25,6 +25,12 @@ export class AppComponent {
 
     this.matIconRegistry.addSvgIcon('exit_to_app',
                                     this.domSanitizer.bypassSecurityTrustResourceUrl(constants.assetsUrl + 'exit_to_app-24px.svg'));
+    this.matIconRegistry.addSvgIcon('add',
+                                    this.domSanitizer.bypassSecurityTrustResourceUrl(constants.assetsUrl + 'add_plus_icon.svg'));
+    this.matIconRegistry.addSvgIcon('download',
+                                    this.domSanitizer.bypassSecurityTrustResourceUrl(constants.assetsUrl + 'download.svg'));
+
+                                    
   }
 
   ngOnInit() {

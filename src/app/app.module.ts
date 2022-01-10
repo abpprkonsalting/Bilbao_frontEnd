@@ -16,16 +16,21 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 import { HeaderComponent } from './components/header/header.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
+import { FileListComponent } from './components/file-list/file-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    FileListComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,10 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
     MatCheckboxModule,
     MatDividerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatExpansionModule,
+    MatProgressBarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
