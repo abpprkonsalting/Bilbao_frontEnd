@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { File } from 'src/app/infrastructure/model/file-model';
 import { FileStatus } from 'src/app/infrastructure/enums/file-status-enum';
@@ -10,11 +10,10 @@ import { FileSizeUnit } from 'src/app/infrastructure/enums/file-size-unit-enum';
   styleUrls: ['./file-list.component.less']
 })
 export class FileListComponent implements OnInit {
-
   files: File[];
 
   constructor() {
-    
+
     this.files = [
       new File(1, 'Archivo1'),
       new File(1, 'Archivo2 con un nombre muy largo que debemos probar'),
@@ -37,7 +36,7 @@ export class FileListComponent implements OnInit {
       new File(1, 'Archivo9'),
       new File(1, 'Archivo10'),
     ];
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -50,8 +49,12 @@ export class FileListComponent implements OnInit {
     return FileSizeUnit[sizeUnit];
   }
 
-  afterPanelExpand() {
+  afterPanelExpand(el: HTMLElement) {
+    el.focus();
+  }
 
+  afterPanelCollapse(file: any) {
+    //console.log(file.name);
   }
 
 }

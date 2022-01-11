@@ -1,8 +1,8 @@
 <div class="list-content-wrapper" fxLayout="column" fxLayoutAlign="start center" ngClass.xs="mobile">
     <div class=list-header fxLayoutAlign="space-between start">
-        <div class="select-all-wrapper">
+        <!-- <div class="select-all-wrapper">
             <mat-checkbox class=""></mat-checkbox>
-        </div>
+        </div> -->
         <div class="list-title">
             <span>files</span>
             <button mat-icon-button class="" ngClass.xs="is-mobile">
@@ -21,13 +21,15 @@
                 </button>
             </div>
 
-            <mat-expansion-panel id="{{file.id}}" class="whole-file">
+            <mat-expansion-panel #expansionpanel class="whole-file" (afterExpand)="afterPanelExpand(inputRef)"
+                (afterCollapse)="afterPanelCollapse(file)">
                 <mat-expansion-panel-header>
                     <mat-panel-description>
-                        <mat-card class="file" fxLayout="row-reverse"
-                            fxLayoutAlign="row-reverse center">
-                            <mat-card-title class="file-title mobile" fxLayout="row" fxLayoutAlign="end center" [matTooltip]="file.name">
-                                <span>{{file.name}}</span>
+                        <mat-card class="file" fxLayout="row-reverse" fxLayoutAlign="row-reverse center">
+                            <mat-card-title class="file-title mobile" fxLayout="row" fxLayoutAlign="start center"
+                                [matTooltip]="file.name">
+                                <input matInput #inputRef [(ngModel)]="file.name" class="file-name"
+                                    [disabled]=!expansionpanel.expanded (keydown.Space)="$event.stopPropagation()">
                             </mat-card-title>
                         </mat-card>
                     </mat-panel-description>
