@@ -23,7 +23,7 @@ export class WebStorageService {
     this.user = new User();
   }
 
-  getUser(): Observable<User> {
+  public getUser(): Observable<User> {
 
     if (this.user.id !== 0) { return of(this.user); }
 
@@ -93,11 +93,29 @@ export class WebStorageService {
     // );
   }
 
-  public setUserFromJWToken(token: string): User {
+  /**************************** Private Methods ******************************/
+
+  private setUserFromJWToken(token: string): User {
     this.sessionToken.jwtAuth = true;
     this.sessionToken.token = token;
     this.saveToken(this.sessionToken);
     return this.setUserFromToken(token);
+  }
+
+  private saveRememberMe(rememberme: boolean) {
+    this.localStorage.set(this._REMEMBER_ME_STORAGE_KEY, rememberme);
+  }
+
+  private saveToken(sessionToken: SessionToken) {
+    const storage = this.localStorage.get(this._REMEMBER_ME_STORAGE_KEY) === true ? this.localStorage : this.sessionStorage;
+    storage.set(this._TOKEN_STORAGE_KEY, sessionToken);
+  }
+
+  private setUserFromToken(token: string): User {
+    const helper = new JwtHelperService();
+    const decoded = helper.decodeToken(token);
+    if (decoded) this.user = new User(decoded.id, decoded.email, undefined, decoded.roles);
+    return this.user;
   }
 
   public clearSessionToken() {
@@ -117,24 +135,6 @@ export class WebStorageService {
       return this.setUserFromToken(this.sessionToken.token);
     }
     return new User();
-  }
-
-  /**************************** Private Methods ******************************/
-
-  private saveRememberMe(rememberme: boolean) {
-    this.localStorage.set(this._REMEMBER_ME_STORAGE_KEY, rememberme);
-  }
-
-  private saveToken(sessionToken: SessionToken) {
-    const storage = this.localStorage.get(this._REMEMBER_ME_STORAGE_KEY) === true ? this.localStorage : this.sessionStorage;
-    storage.set(this._TOKEN_STORAGE_KEY, sessionToken);
-  }
-
-  private setUserFromToken(token: string): User {
-    const helper = new JwtHelperService();
-    const decoded = helper.decodeToken(token);
-    if (decoded) this.user = new User(decoded.id, decoded.email, undefined, decoded.roles);
-    return this.user;
   }
 
 }
