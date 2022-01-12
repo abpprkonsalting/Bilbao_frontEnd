@@ -1,18 +1,17 @@
 <div class="list-content-wrapper" fxLayout="column" fxLayoutAlign="start center" ngClass.xs="mobile">
     <div class=list-header fxLayoutAlign="space-between start">
-        <!-- <div class="select-all-wrapper">
-            <mat-checkbox class=""></mat-checkbox>
-        </div> -->
         <div class="list-title">
             <span>files</span>
-            <button mat-icon-button class="" ngClass.xs="is-mobile">
-                <mat-icon class="icon-add" svgIcon="add"></mat-icon>
-            </button>
+            <div>
+                <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+                <button mat-icon-button class="" ngClass.xs="is-mobile"(click)="fileUpload.click()">
+                    <mat-icon class="icon-add" svgIcon="add"></mat-icon>
+                </button>
+            </div>
         </div>
     </div>
 
-    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" class="cards-wrapper"
-        ngClass.xs="mobile">
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" class="cards-wrapper" ngClass.xs="mobile">
         <mat-accordion fxLayoutAlign="space-around" class="file-wrapper" ngClass.xs="mobile"
             *ngFor="let file of files; let i = index">
             <div class="mat-icon-download-wrapper">

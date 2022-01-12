@@ -57,4 +57,8 @@ export class FileListComponent implements OnInit {
     //console.log(file.name);
   }
 
+  onFileSelected($event: any){
+
+  }
+
 }
