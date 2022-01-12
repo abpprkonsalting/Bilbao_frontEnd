@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule  } from '@angular/common/http';
 
@@ -23,13 +23,17 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { HeaderComponent } from './components/header/header.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 import { FileListComponent } from './components/file-list/file-list.component';
+import { GlobalErrorHandler } from './services/global-error-handler';
+import { ErrorDialogService } from './services/error-dialog.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginDialogComponent,
+    ErrorDialogComponent,
     FileListComponent
   ],
   imports: [
@@ -52,7 +56,14 @@ import { FileListComponent } from './components/file-list/file-list.component';
     MatProgressBarModule,
     MatTooltipModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+    },
+    ErrorDialogService
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
