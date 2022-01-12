@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule  } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,17 +14,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 import { HeaderComponent } from './components/header/header.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 import { FileListComponent } from './components/file-list/file-list.component';
+import { WebStorageService } from './services/webstorage.service';
+import { HttpService } from './services/http.service';
 import { GlobalErrorHandler } from './services/global-error-handler';
 import { ErrorDialogService } from './services/error-dialog.service';
 
@@ -46,7 +48,7 @@ import { ErrorDialogService } from './services/error-dialog.service';
     MatIconModule,
     MatButtonModule,
     FlexLayoutModule,
-    HttpClientModule, 
+    HttpClientModule,
     MatDialogModule,
     MatCheckboxModule,
     MatDividerModule,
@@ -57,6 +59,8 @@ import { ErrorDialogService } from './services/error-dialog.service';
     MatTooltipModule
   ],
   providers: [
+    WebStorageService,
+    HttpService,
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,

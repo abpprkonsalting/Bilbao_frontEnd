@@ -33,5 +33,5 @@
                                           : (email.invalid || password.invalid || loginForm.invalid)">Ok</button>
     <button mat-button (click)="onCancel()">Cancel</button>
   </div>
-  <mat-checkbox class="remember-me" [(ngModel)]="data.rememberme" *ngIf="!createUser">Remember me</mat-checkbox>
+  <mat-checkbox class="remember-me" [(ngModel)]="data.rememberme">Remember me</mat-checkbox>
 </div>

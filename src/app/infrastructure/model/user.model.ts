@@ -9,7 +9,7 @@ export class User {
   roles: string[];
   email: string;
 
-  constructor(id?: number, username?: string, password?: string, roles?: string[], email?: string) {
+  constructor(id?: number, email?: string, password?: string, roles?: string[]) {
     id != null ? this.id = id : this.id = 0;
     email != null ? this.email = email : this.email = '';
     // name != null ? this.name = name : this.name = '';

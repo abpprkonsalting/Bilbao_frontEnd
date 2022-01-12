@@ -1,9 +1,9 @@
 import { environment } from '../environments/environment';
 
 export const constants = {
-  baseUrl: environment.production ? 'http://localhost:4200/' : 'http://localhost:4200/',
+  baseUrl: environment.production ? 'http://127.0.0.1:8000/' : 'http://127.0.0.1:8000/',
   webUrl: environment.production ? '/' : '/',
-  apiUrl: environment.production ? 'http://localhost:4200/api/' : 'http://localhost:4200/api/',
+  apiUrl: environment.production ? 'http://127.0.0.1:8000/' : 'http://127.0.0.1:8000/api/',
   assetsUrl: environment.production ? 'assets/' : 'assets/'
 };
 
