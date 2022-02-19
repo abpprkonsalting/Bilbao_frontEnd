@@ -13,21 +13,18 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   public login(username: string, password: string) {
-
-    return this.http.post<string>('http://127.0.0.1:8000/login',
+    return this.http.post<string>(constants.apiUrl + 'login',
       { email: username, password: password },
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' })});
   }
 
   public registerUser(user: User) {
-
-    return this.http.post<string>('http://127.0.0.1:8000/register',
+    return this.http.post<string>(constants.apiUrl + 'register',
       { email: user.email, password: user.password },
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 
   public logout() {
-
     return this.http.post<string>(constants.apiUrl + 'logout', {}, {})
       .pipe(
         map((body: any) => body),
