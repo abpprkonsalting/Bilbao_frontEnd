@@ -3,7 +3,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
-import { Observable, throwError, of, Observer } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { User } from './infrastructure/model/user.model';
 import { constants } from './app-constants';
@@ -18,7 +18,7 @@ import { WebStorageService } from './services/webstorage.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'FrontEnd';
+  title = 'BilbaoDemo';
   user: User;
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer,
