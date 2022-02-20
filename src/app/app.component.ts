@@ -66,13 +66,15 @@ export class AppComponent {
       });
 
       dialogRef.afterClosed().subscribe(data => {
-        if (data.createUser == true) {
-          this.webStorageService.registerUser(new User(0,data.email,data.password),data.rememberme).subscribe(
-            (user: User) => this.user = user);
-        }
-        else {
-          this.webStorageService.login(data.email, data.password,data.rememberme).subscribe(
-            (user: User) => this.user = user);
+        if (data.action == LoginActions.Email) {
+          if (data.createUser == true) {
+            this.webStorageService.registerUser(new User(0,data.email,data.password),data.rememberme).subscribe(
+              (user: User) => this.user = user);
+          }
+          else {
+            this.webStorageService.login(data.email, data.password,data.rememberme).subscribe(
+              (user: User) => this.user = user);
+          }
         }
       });
     }
