@@ -1,9 +1,9 @@
-import { LoginActions } from '../enums/login-actions-enum';
+import { LoginAction } from '../enums/login-action';
 
 export interface LoginDialogData {
     email: string;
     password: string;
-    action: LoginActions;
+    action: LoginAction;
     rememberme: boolean;
     createUser: boolean;
   }

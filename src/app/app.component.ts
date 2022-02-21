@@ -5,9 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { Observable } from 'rxjs';
 
-import { User } from './infrastructure/model/user.model';
+import { User } from './infrastructure/model/user';
 import { constants } from './app-constants';
-import { LoginActions } from 'src/app/infrastructure/enums/login-actions-enum';
+import { LoginAction } from 'src/app/infrastructure/enums/login-action';
 import { LoginDialogData } from 'src/app/infrastructure/interfaces/login-dialog-data-interface';
 import { WebStorageService } from './services/webstorage.service';
 //import { ObserversModule } from '@angular/cdk/observers';
@@ -56,7 +56,7 @@ export class AppComponent {
       const data: LoginDialogData = {
         email: '',
         password: '',
-        action: LoginActions.Cancel,
+        action: LoginAction.Cancel,
         rememberme: true,
         createUser: false
       };
@@ -66,7 +66,7 @@ export class AppComponent {
       });
 
       dialogRef.afterClosed().subscribe(data => {
-        if (data.action == LoginActions.Email) {
+        if (data.action == LoginAction.Email) {
           if (data.createUser == true) {
             this.webStorageService.registerUser(new User(0,data.email,data.password),data.rememberme).subscribe(
               (user: User) => this.user = user);

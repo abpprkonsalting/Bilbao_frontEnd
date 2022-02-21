@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, Renderer2 } 
 import { constants } from '../../app-constants';
 import {MatToolbar} from '@angular/material/toolbar';
 
-import { User } from '../../infrastructure/model/user.model';
+import { User } from '../../infrastructure/model/user';
 
 @Component({
   selector: 'app-header',
@@ -23,9 +23,9 @@ export class HeaderComponent implements OnInit {
     this.renderer = renderer;
     this.inter = 0;
   }
-   
+
   ngOnInit(): void {
-    
+
   }
 
   ngAfterViewInit() {

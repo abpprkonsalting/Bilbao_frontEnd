@@ -3,9 +3,9 @@ import { LOCAL_STORAGE, SESSION_STORAGE, StorageService } from 'ngx-webstorage-s
 import { switchMap, mergeMap, catchError } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, throwError, of } from 'rxjs';
-import { SessionToken } from '../infrastructure/model/sessionToken.model';
+import { SessionToken } from '../infrastructure/model/sessionToken';
 
-import { User } from '../infrastructure/model/user.model';
+import { User } from '../infrastructure/model/user';
 import { HttpService } from './http.service';
 
 

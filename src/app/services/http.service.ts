@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap, map } from 'rxjs/operators';
 import { constants } from '../app-constants';
 
-import { User } from '../infrastructure/model/user.model';
+import { User } from '../infrastructure/model/user';
 
 
 @Injectable()

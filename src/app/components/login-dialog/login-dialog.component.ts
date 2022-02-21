@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators, FormGroup, FormBuilder, FormGroupDirective, NgForm, AbstractControl } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
-import { LoginActions } from 'src/app/infrastructure/enums/login-actions-enum';
+import { LoginAction } from 'src/app/infrastructure/enums/login-action';
 import { LoginDialogData } from 'src/app/infrastructure/interfaces/login-dialog-data-interface';
 
 
@@ -30,11 +30,11 @@ export class LoginDialogComponent implements OnInit {
   createUser: boolean;
   matcher = new MyErrorStateMatcher();
 
-  constructor(  public dialogRef: MatDialogRef<LoginDialogComponent>, 
+  constructor(  public dialogRef: MatDialogRef<LoginDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: LoginDialogData ) {
                   this.email = new FormControl('', [Validators.required, Validators.email]);
                   this.password = new FormControl('', {
-                    validators: [Validators.minLength(8), 
+                    validators: [Validators.minLength(8),
                       Validators.required],updateOn: 'change'
                     });
                   this.confirmPassword = new FormControl('',[]);
@@ -44,7 +44,7 @@ export class LoginDialogComponent implements OnInit {
                        validators:[this.checkPasswords],
                        updateOn: 'change'
                       });
-                  this.createUser = false; 
+                  this.createUser = false;
   }
 
   ngOnInit() {
@@ -65,7 +65,7 @@ export class LoginDialogComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.data.action = LoginActions.Cancel;
+    this.data.action = LoginAction.Cancel;
     this.dialogRef.close(this.data);
   }
 
@@ -73,7 +73,7 @@ export class LoginDialogComponent implements OnInit {
     this.data.email = this.email.value;
     this.data.password = this.loginForm.controls['password'].value;
     this.data.createUser = this.createUser;
-    this.data.action = LoginActions.Email;
+    this.data.action = LoginAction.Email;
     this.dialogRef.close(this.data);
   }
 
