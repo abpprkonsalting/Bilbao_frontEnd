@@ -5,6 +5,8 @@ import { BusinessOportunity } from 'src/app/infrastructure/model/business-oportu
 import { Offer } from 'src/app/infrastructure/model/offer';
 import { Contract } from 'src/app/infrastructure/model/contract';
 import { OportunityPart } from 'src/app/infrastructure/model/oportunity-part';
+import { ImporterCompany } from "../../infrastructure/enums/importer-company";
+import { Material } from "../../infrastructure/enums/material"
 
 @Component({
   selector: 'oportunities-list',
@@ -15,10 +17,18 @@ export class OportunitiesListComponent implements OnInit {
 
   oportunities: BusinessOportunity[]
   public allDropListsIds: string[];
+
+  importerCompanies = ImporterCompany;
+  importerCompaniesKeys: any = [];
+
+  requestedMaterials = Material;
+  requestedMaterialKeys: any = []
+
   @Output() itemDrop: EventEmitter<CdkDragDrop<BusinessOportunity[]>>
 
   constructor() {
-
+    this.importerCompaniesKeys = Object.keys(this.importerCompanies).filter(f => !isNaN(Number(f)));
+    this.requestedMaterialKeys = Object.keys(this.requestedMaterials).filter(f => !isNaN(Number(f)));
     this.oportunities = []
     this.allDropListsIds = [];
     this.itemDrop = new EventEmitter();

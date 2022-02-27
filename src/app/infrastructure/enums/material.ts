@@ -1,4 +1,4 @@
-export const enum Material {
+export enum Material {
   Laminados_varios,
   Materiales_para_estructuras,
   Materiales_p_andamios,

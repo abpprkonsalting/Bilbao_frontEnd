@@ -14,66 +14,94 @@
       </div>
     </div>
 
-    <div class="oportunities-wrapper"
-          cdkDropList
-          [cdkDropListData]="oportunities"
-          (cdkDropListDropped)="drop($event)"
-          [cdkDropListData]="oportunities"
-          id = "list-0">
+    <div class="oportunities-wrapper" cdkDropList [cdkDropListData]="oportunities" (cdkDropListDropped)="drop($event)"
+      [cdkDropListData]="oportunities" id="list-0">
 
       <mat-expansion-panel #expansionpanel class="whole-oportunity" (afterCollapse)="afterPanelCollapse(oportunity)"
-      *ngFor="let oportunity of oportunities; let i = index" cdkDrag>
-      <mat-expansion-panel-header>
-        <mat-panel-description>
-          <span>{{oportunity.request.importerCompany + '_' + oportunity.request.id}}</span>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <mat-expansion-panel-content class="oportunity-properties" fxLayout="row wrap" fxLayoutAlign="end"
-          cdkDropList
-          id = "{{ 'list-' + (i + 1)}}"
-          (cdkDropListDropped)="dropPart($event,oportunity)">
-        <mat-progress-bar class="oportunity-progress" mode="determinate" value="40"></mat-progress-bar>
+        *ngFor="let oportunity of oportunities; let i = index" cdkDrag>
+        <mat-expansion-panel-header>
+          <mat-panel-description>
+            <span>{{
+                      importerCompanies[oportunity.request.importerCompany] + '_' +
+                      requestedMaterials[oportunity.request.requestedMaterial] + '_' +
+                       oportunity.request.id}}</span>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-expansion-panel-content class="oportunity-properties" fxLayout="row wrap" fxLayoutAlign="end" cdkDropList
+          id="{{ 'list-' + (i + 1)}}" (cdkDropListDropped)="dropPart($event,oportunity)">
+          <mat-progress-bar class="oportunity-progress" mode="determinate" value="40"></mat-progress-bar>
 
-        <mat-expansion-panel #request class="oportunity-request oportunity-component"
-          (afterExpand)="afterPanelExpand(inputRef)">
-          <mat-expansion-panel-header>
-            <mat-panel-description>
-              {{oportunity.request.type}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <mat-expansion-panel-content class="oportunity-properties" fxLayout="row wrap" fxLayoutAlign="end">
-            <input matInput #inputRef [(ngModel)]="oportunity.request.importerCompany" class="file-name"
-              [disabled]=!request.expanded (keydown.Space)="$event.stopPropagation()">
-            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-          </mat-expansion-panel-content>
-        </mat-expansion-panel>
+          <mat-expansion-panel #request class="oportunity-request oportunity-component">
+            <mat-expansion-panel-header>
+              <mat-panel-description style="align-items: center;
+              padding-right: 20px;">
+                <span style="margin-right: 20px;">
+                  {{oportunity.request.type}}
+                </span>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+              </mat-panel-description>
 
-        <mat-expansion-panel *ngIf="oportunity.offer != undefined" #offer class="oportunity-offer oportunity-component"
-          (afterExpand)="afterPanelExpand(inputRef)">
-          <mat-expansion-panel-header>
-            <mat-panel-description>
-              {{oportunity.offer.type}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <mat-expansion-panel-content class="oportunity-properties" fxLayout="row wrap" fxLayoutAlign="end">
-            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-          </mat-expansion-panel-content>
-        </mat-expansion-panel>
+            </mat-expansion-panel-header>
+            <mat-expansion-panel-content fxLayout="column" fxLayoutAlign="space-between">
+              <!-- <input matInput #inputRef [(ngModel)]="oportunity.request.importerCompany" class="file-name"
+              [disabled]=!request.expanded (keydown.Space)="$event.stopPropagation()"> -->
+              <div class="oportunity-component-form-fields-row"
+                    fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between">
+                <mat-form-field appearance="outline" ngClass.xs="mobile">
+                  <mat-label>Importer Company</mat-label>
+                  <mat-select class="importer-company"
+                    [(value)]="oportunity.request.importerCompany">
+                    <!-- <mat-option></mat-option> -->
+                    <!-- <input matinput placeholder="New Importer" class="importer-company-add"> -->
+                    <mat-option *ngFor="let key of importerCompaniesKeys" [value]="key">
+                      {{importerCompanies[key]}}
+                    </mat-option>
 
-        <mat-expansion-panel *ngIf="oportunity.contract != undefined" #offer class="oportunity-contract oportunity-component"
-          (afterExpand)="afterPanelExpand(inputRef)">
-          <mat-expansion-panel-header>
-            <mat-panel-description>
-              {{oportunity.contract.type}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <mat-expansion-panel-content class="oportunity-properties" fxLayout="row wrap" fxLayoutAlign="end">
-            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-          </mat-expansion-panel-content>
-        </mat-expansion-panel>
+                  </mat-select>
+                </mat-form-field>
+                <div class="oportunity-component-divider"></div>
+                <mat-form-field appearance="outline" ngClass.xs="mobile">
+                  <mat-label>Requested Material</mat-label>
+                  <mat-select class=""
+                    [(value)]="oportunity.request.requestedMaterial">
+                    <!-- <mat-option></mat-option> -->
+                    <!-- <input matinput placeholder="New Importer" class="importer-company-add"> -->
+                    <mat-option *ngFor="let key of requestedMaterialKeys" [value]="key">
+                      {{requestedMaterials[key]}}
+                    </mat-option>
 
-      </mat-expansion-panel-content>
-    </mat-expansion-panel>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </mat-expansion-panel-content>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel *ngIf="oportunity.offer != undefined" #offer
+            class="oportunity-offer oportunity-component">
+            <mat-expansion-panel-header>
+              <mat-panel-description>
+                {{oportunity.offer.type}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-expansion-panel-content class="" fxLayout="row wrap" fxLayoutAlign="end">
+              <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </mat-expansion-panel-content>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel *ngIf="oportunity.contract != undefined" #offer
+            class="oportunity-contract oportunity-component">
+            <mat-expansion-panel-header>
+              <mat-panel-description>
+                {{oportunity.contract.type}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-expansion-panel-content class="" fxLayout="row wrap" fxLayoutAlign="end">
+              <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </mat-expansion-panel-content>
+          </mat-expansion-panel>
+
+        </mat-expansion-panel-content>
+      </mat-expansion-panel>
 
     </div>
 

@@ -21,6 +21,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card'
 import { DragDropModule } from '@angular/cdk/drag-drop'
+import { MatSelectModule } from '@angular/material/select'
 
 
 import { HeaderComponent } from './components/header/header.component';
@@ -62,7 +63,8 @@ import { OportunitiesPartsRepoComponent } from './components/oportunities-parts-
     MatProgressBarModule,
     MatTooltipModule,
     MatCardModule,
-    DragDropModule
+    DragDropModule,
+    MatSelectModule
   ],
   providers: [
     WebStorageService,

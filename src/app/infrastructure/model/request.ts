@@ -8,7 +8,7 @@ export class Request extends OportunityPart {
 
   importerCompany: ImporterCompany = ImporterCompany.UNDEFINED;
   specialist?: string;
-  requestedMaterial?: Material;
+  requestedMaterial: Material = 0;
   finalClient?: FinalClient;
   unit: Unit = Unit.Ton;
   Quantity: number = 0;

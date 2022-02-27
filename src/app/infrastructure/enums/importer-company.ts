@@ -1,4 +1,4 @@
-export const enum ImporterCompany {
+export enum ImporterCompany {
   UNDEFINED,
   RESA_CARIBE,
   ACINOX,

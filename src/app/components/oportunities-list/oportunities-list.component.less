@@ -125,21 +125,45 @@
             margin-bottom: 50px;
           }
 
-          .oportunity-component {
-            margin-bottom: 10px;
-            width: 100%;
-          }
           .oportunity-request {
             background: #cff;
           }
 
           .oportunity-offer {
-            background: #c6c6c6;
+            background: #5ff;
           }
 
-          .oportunity-properties-divider {
-            margin-right: 10px;
+          .oportunity-contract {
+            background: #0af;
           }
+
+          .oportunity-component {
+            margin-bottom: 10px;
+            width: 100%;
+
+            .oportunity-component-form-fields-row {
+
+              mat-form-field {
+                width:48%;
+
+                &.mobile {
+                  width:100%;
+                }
+              }
+
+              .oportunity-component-divider {
+                width: 4%;
+
+                &.mobile {
+                  width: 0;
+                }
+              }
+            }
+            .importer-company {
+
+            }
+          }
+
         }
       }
     }
