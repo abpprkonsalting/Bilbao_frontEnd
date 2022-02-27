@@ -5,6 +5,11 @@ import { Contract } from "./contract";
 export class BusinessOportunity {
   id: number = 0;
   request: Request = new Request();
-  offer: Offer = new Offer();
-  contract: Contract = new Contract();
+  offer?: Offer;
+  contract?: Contract;
+
+  // constructor() {
+  //   this.id = 0;
+  //   this.request = new Request();
+  // }
 }
