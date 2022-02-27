@@ -1,3 +1,7 @@
-<app-header  [user]="user" (toggleLoginLogout)="onToggleLoginLogoutButton()"></app-header>
+<app-header [user]="user" (toggleLoginLogout)="onToggleLoginLogoutButton()"></app-header>
+<div class="app-body" fxLayout="row"  fxLayout.xs="column-reverse" fxLayoutAlign="center">
+  <oportunities-list class="list" ngClass.xs="mobile" (itemDrop)="onDropItem($event)"></oportunities-list>
+  <oportunities-parts-repo class="repo" ngClass.xs="mobile" [dropListArray]="dropListArray"></oportunities-parts-repo>
+</div>
 
 <router-outlet></router-outlet>

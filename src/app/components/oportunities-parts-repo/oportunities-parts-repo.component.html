@@ -1,0 +1,28 @@
+<div class="parts-repo">
+
+  <mat-card fxLayout="column" fxLayoutAlign="center" class="oportunity-parts-wrapper" ngClass.xs="mobile">
+
+    <div class="list-header" fxLayoutAlign="end">
+      <div class="list-title">
+        <span>Business Oportunity Parts</span>
+      </div>
+    </div>
+
+
+    <div class="cards-wrapper" fxLayout.xs="row wrap" fxLayoutAlign.xs="space-around" cdkDropList
+      [cdkDropListConnectedTo]="dropListArray">
+      <mat-card class="oportunity-part" ngClass.xs="mobile" *ngFor="let part of parts; let i = index"
+        [class.request]="part.type == 'Request'"
+        [class.offer]="part.type == 'Offer'"
+        [class.contract]="part.type == 'Contract'" cdkDrag
+        [cdkDragData]="part">
+        New {{ part.request ? 'Business Oportunity' : part.type}}
+      </mat-card>
+    </div>
+
+
+
+  </mat-card>
+
+
+</div>

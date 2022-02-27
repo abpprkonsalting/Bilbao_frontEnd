@@ -1,0 +1,75 @@
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+
+import { BusinessOportunity } from 'src/app/infrastructure/model/business-oportunity';
+import { Offer } from 'src/app/infrastructure/model/offer';
+import { Contract } from 'src/app/infrastructure/model/contract';
+import { OportunityPart } from 'src/app/infrastructure/model/oportunity-part';
+
+@Component({
+  selector: 'oportunities-list',
+  templateUrl: './oportunities-list.component.html',
+  styleUrls: ['./oportunities-list.component.less']
+})
+export class OportunitiesListComponent implements OnInit {
+
+  oportunities: BusinessOportunity[]
+  public allDropListsIds: string[];
+  @Output() itemDrop: EventEmitter<CdkDragDrop<BusinessOportunity[]>>
+
+  constructor() {
+
+    this.oportunities = []
+    this.allDropListsIds = [];
+    this.itemDrop = new EventEmitter();
+  }
+
+  ngOnInit(): void {
+  }
+
+  afterPanelExpand(el: HTMLElement) {
+    el.focus();
+  }
+
+  afterPanelCollapse(oportunity: any) {
+    //console.log(file.name);
+  }
+
+  drop(event: CdkDragDrop<BusinessOportunity[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else if (event.item.data.type == undefined) {
+      let newArray = [new BusinessOportunity()]
+      transferArrayItem(
+        newArray,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+      this.itemDrop.emit(event);
+    }
+  }
+
+  dropPart(event: CdkDragDrop<OportunityPart>, oportunity: BusinessOportunity) {
+    if (event.item.data.type == "Offer" &&
+      this.canRequestBeMade(oportunity)) {
+      oportunity.offer = new Offer();
+    }
+    else if (event.item.data.type == "Contract" &&
+      oportunity.offer != undefined &&
+      this.canContractBeMade(oportunity)) {
+      oportunity.contract = new Contract()
+    }
+  }
+
+  canRequestBeMade(oportunity: BusinessOportunity): boolean {
+    if (oportunity.offer == undefined) return true
+    return false;
+  }
+
+  canContractBeMade(oportunity: BusinessOportunity): boolean {
+    if (oportunity.offer != undefined && oportunity.contract == undefined) return true
+    return false
+  }
+
+}

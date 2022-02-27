@@ -1,0 +1,83 @@
+<div class="list-content-wrapper" fxLayout="column" fxLayoutAlign="start center" ngClass.xs="mobile">
+
+  <mat-card fxLayout="column" fxLayoutAlign="center" class="cards-wrapper" ngClass.xs="mobile">
+
+    <div class=list-header fxLayoutAlign="end">
+      <div class="list-title">
+        <span>Business Oportunities</span>
+        <!-- <div>
+                  <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+                  <button mat-icon-button class="" ngClass.xs="is-mobile"(click)="fileUpload.click()">
+                      <mat-icon class="icon-add" svgIcon="add"></mat-icon>
+                  </button>
+              </div> -->
+      </div>
+    </div>
+
+    <div class="oportunities-wrapper"
+          cdkDropList
+          [cdkDropListData]="oportunities"
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListData]="oportunities"
+          id = "list-0">
+
+      <mat-expansion-panel #expansionpanel class="whole-oportunity" (afterCollapse)="afterPanelCollapse(oportunity)"
+      *ngFor="let oportunity of oportunities; let i = index" cdkDrag>
+      <mat-expansion-panel-header>
+        <mat-panel-description>
+          <span>{{oportunity.request.importerCompany + '_' + oportunity.request.id}}</span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-expansion-panel-content class="oportunity-properties" fxLayout="row wrap" fxLayoutAlign="end"
+          cdkDropList
+          id = "{{ 'list-' + (i + 1)}}"
+          (cdkDropListDropped)="dropPart($event,oportunity)">
+        <mat-progress-bar class="oportunity-progress" mode="determinate" value="40"></mat-progress-bar>
+
+        <mat-expansion-panel #request class="oportunity-request oportunity-component"
+          (afterExpand)="afterPanelExpand(inputRef)">
+          <mat-expansion-panel-header>
+            <mat-panel-description>
+              {{oportunity.request.type}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-expansion-panel-content class="oportunity-properties" fxLayout="row wrap" fxLayoutAlign="end">
+            <input matInput #inputRef [(ngModel)]="oportunity.request.importerCompany" class="file-name"
+              [disabled]=!request.expanded (keydown.Space)="$event.stopPropagation()">
+            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+          </mat-expansion-panel-content>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="oportunity.offer != undefined" #offer class="oportunity-offer oportunity-component"
+          (afterExpand)="afterPanelExpand(inputRef)">
+          <mat-expansion-panel-header>
+            <mat-panel-description>
+              {{oportunity.offer.type}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-expansion-panel-content class="oportunity-properties" fxLayout="row wrap" fxLayoutAlign="end">
+            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+          </mat-expansion-panel-content>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="oportunity.contract != undefined" #offer class="oportunity-contract oportunity-component"
+          (afterExpand)="afterPanelExpand(inputRef)">
+          <mat-expansion-panel-header>
+            <mat-panel-description>
+              {{oportunity.contract.type}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-expansion-panel-content class="oportunity-properties" fxLayout="row wrap" fxLayoutAlign="end">
+            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+          </mat-expansion-panel-content>
+        </mat-expansion-panel>
+
+      </mat-expansion-panel-content>
+    </mat-expansion-panel>
+
+    </div>
+
+
+
+  </mat-card>
+</div>

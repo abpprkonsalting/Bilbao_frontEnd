@@ -1,0 +1,153 @@
+.list-content-wrapper {
+
+  height: 100%;
+
+
+  &.mobile {}
+
+  .list-header {
+    width: 100%;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+
+    .select-all-wrapper {
+      display: flex;
+      margin: auto 0;
+    }
+
+    .list-title {
+      margin: auto 0;
+      display: flex;
+
+      span {
+        font-size: 18px;
+        vertical-align: middle;
+        margin: auto;
+      }
+
+      // .file-input {
+      //     display: none;
+      // }
+    }
+  }
+
+  .cards-wrapper {
+
+    width: 100%;
+    background: #e0e0e0;
+    //padding: 5% 10%;
+
+
+    .oportunities-wrapper {
+
+      min-height: 10px;
+
+      .whole-oportunity {
+        width: 100%;
+        margin-bottom: 5px;
+
+        &.selected {
+          background: lightblue;
+        }
+
+        &.semi-selected {
+          background: #d4f0f9;
+        }
+
+        .mat-expansion-indicator {
+          align-self: center;
+        }
+
+        .oportunity {
+          width: 100%;
+          padding: 16px 0;
+
+          &.selected {
+            background: lightblue;
+          }
+
+          &.semi-selected {
+            background: #d4f0f9;
+          }
+
+          .oportunity-title {
+            width: 100%;
+            text-align: center;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+
+            &.mobile {
+              place-content: flex-start;
+              text-align: left;
+            }
+
+            .oportunity-name {
+              font-size: 16px;
+              max-width: 100%;
+              padding-right: 10px;
+              background: transparent;
+              border: none;
+              margin: 0;
+              width: 100%;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+              pointer-events: none;
+
+              &.mobile {
+                text-align: left;
+              }
+            }
+          }
+
+          .steps-button-icon {
+            font-size: 100px;
+            height: 100px;
+            width: 100px;
+            margin: 20px;
+
+            &.mobile {
+              font-size: 30px;
+              height: 30px;
+              width: 30px;
+              margin: 0 15px;
+            }
+          }
+        }
+
+        .oportunity-properties {
+          font-size: 16px;
+          margin-bottom: 10px;
+
+          .oportunity-progress {
+            margin-bottom: 50px;
+          }
+
+          .oportunity-component {
+            margin-bottom: 10px;
+            width: 100%;
+          }
+          .oportunity-request {
+            background: #cff;
+          }
+
+          .oportunity-offer {
+            background: #c6c6c6;
+          }
+
+          .oportunity-properties-divider {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    &.mobile {
+      align-items: center;
+    }
+
+
+  }
+}

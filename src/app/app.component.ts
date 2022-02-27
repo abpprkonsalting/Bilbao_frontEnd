@@ -4,13 +4,15 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { Observable } from 'rxjs';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { User } from './infrastructure/model/user';
 import { constants } from './app-constants';
 import { LoginAction } from 'src/app/infrastructure/enums/login-action';
 import { LoginDialogData } from 'src/app/infrastructure/interfaces/login-dialog-data-interface';
 import { WebStorageService } from './services/webstorage.service';
-//import { ObserversModule } from '@angular/cdk/observers';
+import { BusinessOportunity } from './infrastructure/model/business-oportunity';
+
 
 @Component({
   selector: 'app-root',
@@ -20,6 +22,8 @@ import { WebStorageService } from './services/webstorage.service';
 export class AppComponent {
   title = 'BilbaoDemo';
   user: User;
+  dropListArray: string[] = ['list-0'];
+  dropListCount: number = 1;
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer,
     @Optional() public loginDialog: MatDialog, private webStorageService: WebStorageService) {
@@ -40,7 +44,7 @@ export class AppComponent {
     this.webStorageService.getUser().subscribe(
       (user: User) => {
         this.user = user;
-        console.log(this.user);
+        //console.log(this.user);
       }
     );
   }
@@ -77,6 +81,13 @@ export class AppComponent {
           }
         }
       });
+    }
+  }
+
+  onDropItem($event: CdkDragDrop<BusinessOportunity[]>) {
+    if ($event.item.data.type == undefined) {
+      this.dropListArray.unshift("list-" + this.dropListCount)
+      this.dropListCount++;
     }
   }
 }

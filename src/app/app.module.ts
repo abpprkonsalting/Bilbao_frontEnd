@@ -19,16 +19,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card'
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 
 import { HeaderComponent } from './components/header/header.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
-import { FileListComponent } from './components/file-list/file-list.component';
+import { OportunitiesListComponent } from './components/oportunities-list/oportunities-list.component';
 import { WebStorageService } from './services/webstorage.service';
 import { HttpService } from './services/http.service';
 import { GlobalErrorHandler } from './services/global-error-handler';
 import { ErrorDialogService } from './services/error-dialog.service';
+import { OportunitiesPartsRepoComponent } from './components/oportunities-parts-repo/oportunities-parts-repo.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { ErrorDialogService } from './services/error-dialog.service';
     HeaderComponent,
     LoginDialogComponent,
     ErrorDialogComponent,
-    FileListComponent
+    OportunitiesListComponent,
+    OportunitiesPartsRepoComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,9 @@ import { ErrorDialogService } from './services/error-dialog.service';
     MatInputModule,
     MatExpansionModule,
     MatProgressBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCardModule,
+    DragDropModule
   ],
   providers: [
     WebStorageService,

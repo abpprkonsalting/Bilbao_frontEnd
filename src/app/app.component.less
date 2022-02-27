@@ -1,8 +1,31 @@
+.app-body {
+  margin-top: 80px;
+  padding: 0px 20px;
+
+  .list {
+    width:68%;
+    margin-right: 2%;
+
+    &.mobile {
+      width: 100%;
+      margin: 20px 0;
+    }
+  }
+
+  .repo {
+    width: 30%;
+
+    &.mobile {
+      width: 100%;
+    }
+  }
+}
+
 .sidenav-container {
     /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
        causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
     flex: 1;
-  
+
     .mat-sidenav {
       width: 50vw;
       max-width: 250px;
@@ -26,7 +49,7 @@
       flex: 1 0 auto;
     }
   }
-  
+
   .content-container {
     /*min-height: 1600px;*/
     /*max-width: 1200px;*/
