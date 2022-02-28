@@ -1,4 +1,4 @@
-export const enum FinalClient {
+export enum FinalClient {
   RESA_CARIBE = 0,
   TECNOTEX,
   RAMÓN_PEÑA,

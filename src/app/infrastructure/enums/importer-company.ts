@@ -1,5 +1,4 @@
 export enum ImporterCompany {
-  UNDEFINED,
   RESA_CARIBE,
   ACINOX,
   TECNOIMPORT,

@@ -22,6 +22,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card'
 import { DragDropModule } from '@angular/cdk/drag-drop'
 import { MatSelectModule } from '@angular/material/select'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 import { HeaderComponent } from './components/header/header.component';
@@ -64,7 +67,9 @@ import { OportunitiesPartsRepoComponent } from './components/oportunities-parts-
     MatTooltipModule,
     MatCardModule,
     DragDropModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     WebStorageService,

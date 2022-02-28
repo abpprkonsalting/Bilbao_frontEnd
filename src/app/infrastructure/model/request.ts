@@ -6,12 +6,12 @@ import { OportunityPart } from "./oportunity-part";
 
 export class Request extends OportunityPart {
 
-  importerCompany: ImporterCompany = ImporterCompany.UNDEFINED;
+  importerCompany?: ImporterCompany;
   specialist?: string;
-  requestedMaterial: Material = 0;
+  requestedMaterial?: Material;
   finalClient?: FinalClient;
-  unit: Unit = Unit.Ton;
-  Quantity: number = 0;
+  unit?: Unit;
+  quantity: number = 0;
   date: Date = new Date(Date.now());
   override type: string = "Request";
 }
