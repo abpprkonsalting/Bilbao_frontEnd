@@ -84,7 +84,8 @@ export class OportunitiesListComponent implements OnInit {
   }
 
   canOfferBeMade(oportunity: BusinessOportunity): boolean {
-    if (oportunity.offer == undefined && oportunity.request) return true
+    if (oportunity.offer == undefined &&
+        this.getRequestProgress(oportunity.request) == 100) return true
     return false;
   }
 
