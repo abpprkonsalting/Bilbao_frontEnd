@@ -113,7 +113,8 @@
 
               </div>
               <div mat-dialog-actions fxLayoutAlign="end center">
-                <button mat-button (click)="SaveRequest(oportunity.request)" [disabled]="requestProgressValue != 100">Save</button>
+                <button mat-button (click)="SaveRequest(oportunity.request)"
+                        [disabled]="getRequestProgress(oportunity.request) != 100">Save</button>
               </div>
             </mat-expansion-panel-content>
           </mat-expansion-panel>

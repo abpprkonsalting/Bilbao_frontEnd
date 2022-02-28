@@ -33,8 +33,6 @@ export class OportunitiesListComponent implements OnInit {
   units = Unit;
   unitsKeys: any = []
 
-  requestProgressValue: number = 0
-
   @Output() itemDrop: EventEmitter<CdkDragDrop<BusinessOportunity[]>>
 
   constructor() {
@@ -75,7 +73,7 @@ export class OportunitiesListComponent implements OnInit {
 
   dropPart(event: CdkDragDrop<OportunityPart>, oportunity: BusinessOportunity) {
     if (event.item.data.type == "Offer" &&
-      this.canRequestBeMade(oportunity)) {
+      this.canOfferBeMade(oportunity)) {
       oportunity.offer = new Offer();
     }
     else if (event.item.data.type == "Contract" &&
@@ -85,8 +83,8 @@ export class OportunitiesListComponent implements OnInit {
     }
   }
 
-  canRequestBeMade(oportunity: BusinessOportunity): boolean {
-    if (oportunity.offer == undefined) return true
+  canOfferBeMade(oportunity: BusinessOportunity): boolean {
+    if (oportunity.offer == undefined && oportunity.request) return true
     return false;
   }
 
@@ -107,13 +105,13 @@ export class OportunitiesListComponent implements OnInit {
   }
 
   getRequestProgress(request: Request): number {
-    this.requestProgressValue = 0
-    this.requestProgressValue += request.importerCompany ? 20 : 0
-    this.requestProgressValue += request.requestedMaterial ? 20 : 0
-    this.requestProgressValue += request.finalClient ? 20 : 0
-    this.requestProgressValue += request.unit ? 20 : 0
-    this.requestProgressValue += request.quantity != 0 ? 20 : 0
-    return this.requestProgressValue
+    let requestProgressValue = 0
+    requestProgressValue += request.importerCompany ? 20 : 0
+    requestProgressValue += request.requestedMaterial ? 20 : 0
+    requestProgressValue += request.finalClient ? 20 : 0
+    requestProgressValue += request.unit ? 20 : 0
+    requestProgressValue += request.quantity != 0 ? 20 : 0
+    return requestProgressValue
   }
 
   SaveRequest(request: Request) {
