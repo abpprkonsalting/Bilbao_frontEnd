@@ -110,7 +110,6 @@
                   </mat-form-field>
                 </div>
 
-
               </div>
               <div mat-dialog-actions fxLayoutAlign="end center">
                 <button mat-button (click)="SaveRequest(oportunity.request)"
@@ -122,24 +121,87 @@
           <mat-expansion-panel *ngIf="oportunity.offer != undefined" #offer
             class="oportunity-offer oportunity-component">
             <mat-expansion-panel-header>
-              <mat-panel-description>
-                {{oportunity.offer.type}}
+              <mat-panel-description style="align-items: center;
+              padding-right: 20px;">
+                <span style="margin-right: 20px;">
+                  {{oportunity.offer.type}}
+                </span>
+                <mat-progress-bar mode="determinate" [value]="getOfferProgress(oportunity.offer)"></mat-progress-bar>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <mat-expansion-panel-content class="" fxLayout="row wrap" fxLayoutAlign="end">
-              <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            <mat-expansion-panel-content fxLayout="column" fxLayoutAlign="space-between">
+
+              <div class="oportunity-component-form-fields-row three-elements" fxLayout="row" fxLayout.xs="column"
+                fxLayoutAlign="end">
+
+                <mat-form-field appearance="outline" ngClass.xs="mobile">
+                  <mat-label>Amount FOB</mat-label>
+                  <input matInput [(ngModel)]="oportunity.offer.amountFob"
+                        style="text-align: right" class="">
+                </mat-form-field>
+
+                <div class="oportunity-component-divider"></div>
+
+                <mat-form-field appearance="outline" ngClass.xs="mobile">
+                  <mat-label>Total</mat-label>
+                  <input matInput [(ngModel)]="oportunity.offer.amountTotal" style="text-align: right" class="">
+                </mat-form-field>
+
+                <div class="oportunity-component-divider"></div>
+
+                <mat-form-field appearance="outline" ngClass.xs="mobile">
+                  <mat-label>Currency</mat-label>
+                  <mat-select class="" [(value)]="oportunity.offer.currency">
+                    <mat-option></mat-option>
+                    <mat-option *ngFor="let key of currenciesKeys" [value]="key">
+                      {{currencies[key]}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </div>
+
+              <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
+                fxLayoutAlign="space-between">
+
+                <mat-form-field appearance="outline" ngClass.xs="mobile">
+                  <mat-label>Final Date</mat-label>
+                  <input matInput [(ngModel)]="oportunity.offer.validUntil" [matDatepicker]="offerPicker">
+                  <mat-datepicker-toggle matSuffix [for]="offerPicker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #offerPicker></mat-datepicker>
+                </mat-form-field>
+
+                <div class="oportunity-component-divider"></div>
+
+                <mat-form-field appearance="outline" ngClass.xs="mobile">
+                  <mat-label>Status</mat-label>
+                  <mat-select class="" [(value)]="oportunity.offer.status">
+                    <!-- <mat-option></mat-option> -->
+                    <mat-option *ngFor="let key of offerStatusKeys" [value]="key">
+                      {{offerStatuses[key]}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </div>
+
             </mat-expansion-panel-content>
           </mat-expansion-panel>
 
           <mat-expansion-panel *ngIf="oportunity.contract != undefined" #offer
             class="oportunity-contract oportunity-component">
             <mat-expansion-panel-header>
-              <mat-panel-description>
-                {{oportunity.contract.type}}
+              <mat-panel-description style="align-items: center;
+              padding-right: 20px;">
+                <span style="margin-right: 20px;">
+
+                </span>
+                <mat-progress-bar mode="determinate" [value]="40"></mat-progress-bar>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <mat-expansion-panel-content class="" fxLayout="row wrap" fxLayoutAlign="end">
-              <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            <mat-expansion-panel-content fxLayout="column" fxLayoutAlign="space-between">
             </mat-expansion-panel-content>
           </mat-expansion-panel>
 

@@ -10,6 +10,8 @@ import { ImporterCompany } from "../../infrastructure/enums/importer-company";
 import { Material } from "../../infrastructure/enums/material"
 import { FinalClient } from 'src/app/infrastructure/enums/final-client';
 import { Unit } from 'src/app/infrastructure/enums/unit';
+import { Currency } from 'src/app/infrastructure/enums/currency';
+import { OStatus } from 'src/app/infrastructure/enums/offer-status';
 
 @Component({
   selector: 'oportunities-list',
@@ -30,8 +32,14 @@ export class OportunitiesListComponent implements OnInit {
   finalClients = FinalClient;
   finalClientsKeys: any = []
 
+  currencies = Currency;
+  currenciesKeys: any = []
+
   units = Unit;
   unitsKeys: any = []
+
+  offerStatuses = OStatus
+  offerStatusKeys: any = []
 
   @Output() itemDrop: EventEmitter<CdkDragDrop<BusinessOportunity[]>>
 
@@ -40,6 +48,8 @@ export class OportunitiesListComponent implements OnInit {
     this.requestedMaterialKeys = Object.keys(this.requestedMaterials).filter(f => !isNaN(Number(f)));
     this.finalClientsKeys = Object.keys(this.finalClients).filter(f => !isNaN(Number(f)));
     this.unitsKeys = Object.keys(this.units).filter(f => !isNaN(Number(f)));
+    this.currenciesKeys = Object.keys(this.currencies).filter(f => !isNaN(Number(f)));
+    this.offerStatusKeys = Object.keys(this.offerStatuses).filter(f => !isNaN(Number(f)));
     this.oportunities = []
     this.allDropListsIds = [];
     this.itemDrop = new EventEmitter();
@@ -113,6 +123,11 @@ export class OportunitiesListComponent implements OnInit {
     requestProgressValue += request.unit ? 20 : 0
     requestProgressValue += request.quantity != 0 ? 20 : 0
     return requestProgressValue
+  }
+
+  getOfferProgress(offer: Offer): number {
+    let offerProgressValue = 0
+    return offerProgressValue
   }
 
   SaveRequest(request: Request) {
