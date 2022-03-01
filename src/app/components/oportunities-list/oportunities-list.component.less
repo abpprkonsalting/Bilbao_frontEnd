@@ -141,53 +141,66 @@
             margin-bottom: 10px;
             width: 100%;
 
-            .oportunity-component-form-fields-row {
+            .oportunity-component-section {
 
-              .oportunity-component-form-fields-subrow {
-                width:48%;
+              .oportunity-component-section-header {
+                border-bottom: 1px solid #38cdcd;
+                margin-bottom: 20px;
 
-                &.mobile {
-                  width:100%;
-                }
-              }
-              mat-form-field {
-                width:48%;
-
-                &.mobile {
-                  width:100%;
+                mat-label {
+                  text-transform: uppercase;
+                  padding-bottom: 5px;
+                  display: block;
                 }
               }
 
-              .oportunity-component-divider {
-                width: 4%;
+              .oportunity-component-form-fields-row {
 
-                &.mobile {
-                  width: 0;
-                }
-              }
-
-              &.three-elements {
-                mat-form-field {
-                  width:30%;
+                .oportunity-component-form-fields-subrow {
+                  width: 48%;
 
                   &.mobile {
-                    width:100%;
+                    width: 100%;
+                  }
+                }
+
+                mat-form-field {
+                  width: 48%;
+
+                  &.mobile {
+                    width: 100%;
                   }
                 }
 
                 .oportunity-component-divider {
-                  width: 5%;
+                  width: 4%;
 
                   &.mobile {
                     width: 0;
                   }
                 }
 
+                &.three-elements {
+                  mat-form-field {
+                    width: 30%;
+
+                    &.mobile {
+                      width: 100%;
+                    }
+                  }
+
+                  .oportunity-component-divider {
+                    width: 5%;
+
+                    &.mobile {
+                      width: 0;
+                    }
+                  }
+
+                }
               }
             }
-            .importer-company {
 
-            }
           }
 
         }
