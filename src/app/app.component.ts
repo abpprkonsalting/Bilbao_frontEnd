@@ -44,6 +44,7 @@ export class AppComponent {
     this.webStorageService.getUser().subscribe(
       (user: User) => {
         this.user = user;
+        //this.user.roles.push("ADMIN")
         //console.log(this.user);
       }
     );
