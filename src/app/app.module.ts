@@ -24,6 +24,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
 import { MatSelectModule } from '@angular/material/select'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 
@@ -38,6 +39,8 @@ import { ErrorDialogService } from './services/error-dialog.service';
 import { OportunitiesPartsRepoComponent } from './components/oportunities-parts-repo/oportunities-parts-repo.component';
 import { UserNotAdminPipe } from './infrastructure/pipes/user-not-admin.pipe';
 import { OfferProgressPipe } from './infrastructure/pipes/offer-status-to-progress.pipe';
+import { OfferActionPipe } from './infrastructure/pipes/offer-action.pipe';
+import { OfferCloseDialogComponent } from './components/offer-close-dialog/offer-close-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,8 @@ import { OfferProgressPipe } from './infrastructure/pipes/offer-status-to-progre
     OportunitiesPartsRepoComponent,
     UserNotAdminPipe,
     OfferProgressPipe,
+    OfferActionPipe,
+    OfferCloseDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,8 @@ import { OfferProgressPipe } from './infrastructure/pipes/offer-status-to-progre
     DragDropModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatButtonToggleModule
   ],
   providers: [
     WebStorageService,

@@ -9,8 +9,8 @@ export class Offer extends OportunityPart {
   amountFob: number = 0
   amountTotal: number = 0;
   currency: Currency = Currency.Euro;
+  paymentMethod: PaymentMethod = PaymentMethod.A_convenir;
   status: OfferStatus = new OfferStatus();
   rejectedReason?: RejectedReason = RejectedReason.Unknown;
-  paymentMethod: PaymentMethod = PaymentMethod.A_convenir;
   override type: string = "Offer";
 }

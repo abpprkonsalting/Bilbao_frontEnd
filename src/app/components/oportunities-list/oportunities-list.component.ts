@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Optional } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { MatDialog } from '@angular/material/dialog';
 
 import { User } from 'src/app/infrastructure/model/user'
 import { BusinessOportunity } from 'src/app/infrastructure/model/business-oportunity';
@@ -13,6 +14,8 @@ import { FinalClient } from 'src/app/infrastructure/enums/final-client';
 import { Unit } from 'src/app/infrastructure/enums/unit';
 import { Currency } from 'src/app/infrastructure/enums/currency';
 import { OStatus } from 'src/app/infrastructure/enums/offer-status';
+import { PaymentMethod } from 'src/app/infrastructure/enums/payment-method';
+import { OfferCloseDialogComponent } from '../offer-close-dialog/offer-close-dialog.component';
 
 @Component({
   selector: 'oportunities-list',
@@ -35,18 +38,21 @@ export class OportunitiesListComponent implements OnInit {
   finalClients = FinalClient;
   finalClientsKeys: any = []
 
-  currencies = Currency;
-  currenciesKeys: any = []
-
   units = Unit;
   unitsKeys: any = []
 
   offerStatuses = OStatus
   offerStatusKeys: any = []
 
+  currencies = Currency;
+  currenciesKeys: any = []
+
+  paymentMethods = PaymentMethod
+  paymentMethodsKeys: any = []
+
   @Output() itemDrop: EventEmitter<CdkDragDrop<BusinessOportunity[]>>
 
-  constructor() {
+  constructor( @Optional() public offerCloseDialog: MatDialog) {
     this.user = new User()
     this.importerCompaniesKeys = Object.keys(this.importerCompanies).filter(f => !isNaN(Number(f)));
     this.requestedMaterialKeys = Object.keys(this.requestedMaterials).filter(f => !isNaN(Number(f)));
@@ -54,6 +60,7 @@ export class OportunitiesListComponent implements OnInit {
     this.unitsKeys = Object.keys(this.units).filter(f => !isNaN(Number(f)));
     this.currenciesKeys = Object.keys(this.currencies).filter(f => !isNaN(Number(f)));
     this.offerStatusKeys = Object.keys(this.offerStatuses).filter(f => !isNaN(Number(f)));
+    this.paymentMethodsKeys = Object.keys(this.paymentMethods).filter(f => !isNaN(Number(f)));
     this.oportunities = []
     this.allDropListsIds = [];
     this.itemDrop = new EventEmitter();
@@ -129,9 +136,11 @@ export class OportunitiesListComponent implements OnInit {
     return requestProgressValue
   }
 
-  getOfferProgress(offer: Offer): number {
-    let offerProgressValue = 0
-    return offerProgressValue
+  offerAction(): void {
+    const dialogRef = this.offerCloseDialog.open(OfferCloseDialogComponent)
+    dialogRef.afterClosed().subscribe(data => {
+
+    });
   }
 
   SaveRequest(request: Request) {
