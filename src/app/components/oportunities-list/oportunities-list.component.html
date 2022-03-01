@@ -142,7 +142,8 @@
                 <span style="margin-right: 20px;">
                   {{oportunity.offer.type}}
                 </span>
-                <mat-progress-bar mode="determinate" [value]="getOfferProgress(oportunity.offer)"></mat-progress-bar>
+                <mat-progress-bar mode="determinate" [value]="oportunity.offer.status | offerProgress">
+                </mat-progress-bar>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-expansion-panel-content fxLayout="column" fxLayoutAlign="space-between">

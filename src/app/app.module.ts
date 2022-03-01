@@ -37,6 +37,7 @@ import { GlobalErrorHandler } from './services/global-error-handler';
 import { ErrorDialogService } from './services/error-dialog.service';
 import { OportunitiesPartsRepoComponent } from './components/oportunities-parts-repo/oportunities-parts-repo.component';
 import { UserNotAdminPipe } from './infrastructure/pipes/user-not-admin.pipe';
+import { OfferProgressPipe } from './infrastructure/pipes/offer-status-to-progress.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { UserNotAdminPipe } from './infrastructure/pipes/user-not-admin.pipe';
     ErrorDialogComponent,
     OportunitiesListComponent,
     OportunitiesPartsRepoComponent,
-    UserNotAdminPipe
+    UserNotAdminPipe,
+    OfferProgressPipe,
   ],
   imports: [
     BrowserModule,
