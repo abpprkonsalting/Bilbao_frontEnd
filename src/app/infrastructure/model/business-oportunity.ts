@@ -4,7 +4,7 @@ import { Contract } from "./contract";
 
 export class BusinessOportunity {
   id: number = 0;
-  request: Request = new Request();
+  request: Request = new Request(10);
   offer?: Offer;
   contract?: Contract;
 

@@ -76,19 +76,6 @@
 
                 <div class="oportunity-component-divider"></div>
 
-                <mat-form-field appearance="outline" ngClass.xs="mobile">
-                  <mat-label>Choose a date</mat-label>
-                  <input matInput [(ngModel)]="oportunity.request.date" [matDatepicker]="requestPicker">
-                  <mat-datepicker-toggle matSuffix [for]="requestPicker">
-                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                  </mat-datepicker-toggle>
-                  <mat-datepicker #requestPicker></mat-datepicker>
-                </mat-form-field>
-
-              </div>
-              <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
-                fxLayoutAlign="end">
-
                 <div class="oportunity-component-form-fields-subrow" fxLayout="row" ngClass.xs="mobile">
                   <mat-form-field appearance="outline" ngClass.xs="mobile">
                     <mat-label>Quantity</mat-label>
@@ -109,6 +96,30 @@
                     </mat-select>
                   </mat-form-field>
                 </div>
+
+              </div>
+              <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
+                fxLayoutAlign="end">
+
+                <mat-form-field appearance="outline" ngClass.xs="mobile">
+                  <mat-label>Offer date</mat-label>
+                  <input matInput [(ngModel)]="oportunity.request.date" [matDatepicker]="requestDatePicker">
+                  <mat-datepicker-toggle matSuffix [for]="requestDatePicker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #requestDatePicker></mat-datepicker>
+                </mat-form-field>
+
+                <div class="oportunity-component-divider"></div>
+
+                <mat-form-field appearance="outline" ngClass.xs="mobile">
+                  <mat-label>Valid until</mat-label>
+                  <input matInput [(ngModel)]="oportunity.request.validUntil" [matDatepicker]="requestValidUntilPicker">
+                  <mat-datepicker-toggle matSuffix [for]="requestValidUntilPicker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #requestValidUntilPicker></mat-datepicker>
+                </mat-form-field>
 
               </div>
               <div mat-dialog-actions fxLayoutAlign="end center">
@@ -165,26 +176,25 @@
               <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
                 fxLayoutAlign="space-between">
 
-                <mat-form-field appearance="outline" ngClass.xs="mobile">
+                <!-- <mat-form-field appearance="outline" ngClass.xs="mobile">
                   <mat-label>Final Date</mat-label>
                   <input matInput [(ngModel)]="oportunity.offer.validUntil" [matDatepicker]="offerPicker">
                   <mat-datepicker-toggle matSuffix [for]="offerPicker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                   </mat-datepicker-toggle>
                   <mat-datepicker #offerPicker></mat-datepicker>
-                </mat-form-field>
+                </mat-form-field> -->
 
                 <div class="oportunity-component-divider"></div>
 
-                <mat-form-field appearance="outline" ngClass.xs="mobile">
+                <!-- <mat-form-field appearance="outline" ngClass.xs="mobile">
                   <mat-label>Status</mat-label>
                   <mat-select class="" [(value)]="oportunity.offer.status">
-                    <!-- <mat-option></mat-option> -->
                     <mat-option *ngFor="let key of offerStatusKeys" [value]="key">
                       {{offerStatuses[key]}}
                     </mat-option>
                   </mat-select>
-                </mat-form-field>
+                </mat-form-field> -->
 
               </div>
 

@@ -13,5 +13,16 @@ export class Request extends OportunityPart {
   unit?: Unit;
   quantity: number = 0;
   date: Date = new Date(Date.now());
+  validUntil: Date = new Date();
   override type: string = "Request";
+
+  public constructor(days: number) {
+    super();
+    this.addDays(this.validUntil, days);
+  }
+
+  private addDays(date: Date, days: number): Date {
+    date.setDate(date.getDate() + days);
+    return date;
+  }
 }
