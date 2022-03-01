@@ -136,7 +136,7 @@
 
                 <mat-form-field appearance="outline" ngClass.xs="mobile">
                   <mat-label>Amount FOB</mat-label>
-                  <input matInput [(ngModel)]="oportunity.offer.amountFob"
+                  <input matInput [(ngModel)]="oportunity.offer.amountFob" [disabled]="user | userNotAdmin"
                         style="text-align: right" class="">
                 </mat-form-field>
 
@@ -144,14 +144,15 @@
 
                 <mat-form-field appearance="outline" ngClass.xs="mobile">
                   <mat-label>Total</mat-label>
-                  <input matInput [(ngModel)]="oportunity.offer.amountTotal" style="text-align: right" class="">
+                  <input matInput [(ngModel)]="oportunity.offer.amountTotal" [disabled]="user | userNotAdmin"
+                  style="text-align: right" class="">
                 </mat-form-field>
 
                 <div class="oportunity-component-divider"></div>
 
                 <mat-form-field appearance="outline" ngClass.xs="mobile">
                   <mat-label>Currency</mat-label>
-                  <mat-select class="" [(value)]="oportunity.offer.currency">
+                  <mat-select class="" [(value)]="oportunity.offer.currency" [disabled]="user | userNotAdmin">
                     <mat-option></mat-option>
                     <mat-option *ngFor="let key of currenciesKeys" [value]="key">
                       {{currencies[key]}}

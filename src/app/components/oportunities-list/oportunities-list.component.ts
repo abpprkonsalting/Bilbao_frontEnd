@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
+import { User } from 'src/app/infrastructure/model/user'
 import { BusinessOportunity } from 'src/app/infrastructure/model/business-oportunity';
 import { Request } from 'src/app/infrastructure/model/request'
 import { Offer } from 'src/app/infrastructure/model/offer';
@@ -19,6 +20,8 @@ import { OStatus } from 'src/app/infrastructure/enums/offer-status';
   styleUrls: ['./oportunities-list.component.less']
 })
 export class OportunitiesListComponent implements OnInit {
+
+  @Input() user: User;
 
   oportunities: BusinessOportunity[]
   public allDropListsIds: string[];
@@ -44,6 +47,7 @@ export class OportunitiesListComponent implements OnInit {
   @Output() itemDrop: EventEmitter<CdkDragDrop<BusinessOportunity[]>>
 
   constructor() {
+    this.user = new User()
     this.importerCompaniesKeys = Object.keys(this.importerCompanies).filter(f => !isNaN(Number(f)));
     this.requestedMaterialKeys = Object.keys(this.requestedMaterials).filter(f => !isNaN(Number(f)));
     this.finalClientsKeys = Object.keys(this.finalClients).filter(f => !isNaN(Number(f)));

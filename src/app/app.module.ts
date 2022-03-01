@@ -36,6 +36,7 @@ import { HttpService } from './services/http.service';
 import { GlobalErrorHandler } from './services/global-error-handler';
 import { ErrorDialogService } from './services/error-dialog.service';
 import { OportunitiesPartsRepoComponent } from './components/oportunities-parts-repo/oportunities-parts-repo.component';
+import { UserNotAdminPipe } from './infrastructure/pipes/user-not-admin.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { OportunitiesPartsRepoComponent } from './components/oportunities-parts-
     LoginDialogComponent,
     ErrorDialogComponent,
     OportunitiesListComponent,
-    OportunitiesPartsRepoComponent
+    OportunitiesPartsRepoComponent,
+    UserNotAdminPipe
   ],
   imports: [
     BrowserModule,
