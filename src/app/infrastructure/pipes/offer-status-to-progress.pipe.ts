@@ -3,7 +3,8 @@ import { OfferStatus } from '../model/statuses/offer-status';
 import { OStatus } from '../enums/offer-status';
 
 @Pipe({
-  name: 'offerProgress'
+  name: 'offerProgress',
+  pure: false
 })
 export class OfferProgressPipe implements PipeTransform {
 
@@ -12,16 +13,16 @@ export class OfferProgressPipe implements PipeTransform {
       case OStatus.Created: {
         return 25;
       }
-      case OStatus.HeadQuartersApproved: {
+      case OStatus.Approved: {
         return 50;
       }
-      case OStatus.SendToClient: {
+      case OStatus.Send: {
         return 75;
       }
-      case OStatus.ClientAccepted: {
+      case OStatus.Accepted: {
         return 100;
       }
-      case OStatus.ClientRejected: {
+      case OStatus.Rejected: {
         return 100;
       }
     }

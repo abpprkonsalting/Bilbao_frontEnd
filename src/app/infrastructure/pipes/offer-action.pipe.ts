@@ -4,7 +4,8 @@ import { OfferStatus } from '../model/statuses/offer-status';
 import { User } from '../model/user';
 
 @Pipe({
-  name: 'offerAction'
+  name: 'offerAction',
+  pure: false
 })
 export class OfferActionPipe implements PipeTransform {
 
@@ -16,11 +17,17 @@ export class OfferActionPipe implements PipeTransform {
         }
         return ""
       }
-      case OStatus.HeadQuartersApproved: {
+      case OStatus.Approved: {
         return "Send"
       }
-      case OStatus.SendToClient: {
+      case OStatus.Send: {
         return "Close"
+      }
+      case OStatus.Accepted: {
+        return "Re-open"
+      }
+      case OStatus.Rejected: {
+        return "Re-open"
       }
 
     }

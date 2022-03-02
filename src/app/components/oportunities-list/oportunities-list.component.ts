@@ -136,11 +136,42 @@ export class OportunitiesListComponent implements OnInit {
     return requestProgressValue
   }
 
-  offerAction(): void {
-    const dialogRef = this.offerCloseDialog.open(OfferCloseDialogComponent)
-    dialogRef.afterClosed().subscribe(data => {
+  offerAction(business: BusinessOportunity): void {
 
-    });
+    if (business.offer) {
+      let offer = business.offer
+      switch (business.offer?.status.status) {
+        case OStatus.Created: {
+          offer.status.status = OStatus.Approved
+          break;
+        }
+        case OStatus.Approved: {
+          offer.status.status = OStatus.Send
+          break;
+        }
+        case OStatus.Send: {
+          const dialogRef = this.offerCloseDialog.open(OfferCloseDialogComponent, {
+            data: {
+              offerStatus: business.offer.status.status,
+              rejectedReason: business.offer.rejectedReason
+            }
+          })
+          dialogRef.afterClosed().subscribe(data => {
+            offer.status.status = data.offerStatus
+            offer.rejectedReason = data.rejectedReason
+          });
+          break;
+        }
+        case OStatus.Accepted: {
+          business.offer.status.status = OStatus.Send
+          break
+        }
+        case OStatus.Rejected: {
+          business.offer.status.status = OStatus.Send
+        }
+      }
+    }
+
   }
 
   SaveRequest(request: Request) {

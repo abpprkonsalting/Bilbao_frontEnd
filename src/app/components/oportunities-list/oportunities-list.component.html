@@ -127,7 +127,7 @@
 
                 </div>
               </div>
-              <div mat-dialog-actions fxLayoutAlign="end center">
+              <div mat-dialog-actions class="actions-container" fxLayoutAlign="end center">
                 <button mat-button (click)="SaveRequest(oportunity.request)"
                   [disabled]="getRequestProgress(oportunity.request) != 100">Save</button>
               </div>
@@ -137,13 +137,19 @@
           <mat-expansion-panel *ngIf="oportunity.offer != undefined" #offer
             class="oportunity-offer oportunity-component">
             <mat-expansion-panel-header>
-              <mat-panel-description style="align-items: center;
-              padding-right: 20px;">
-                <span style="margin-right: 20px;">
+              <mat-panel-description style="align-items: center;padding-right: 20px;">
+                <span>
                   {{oportunity.offer.type}}
                 </span>
+                <div fxLayout="row" style="margin: 0 10px;">
+                  <mat-icon *ngIf="oportunity.offer.status.status == 1">check_circle_outline</mat-icon>
+                  <mat-icon *ngIf="oportunity.offer.status.status == 2"> mail_outline</mat-icon>
+                  <mat-icon *ngIf="oportunity.offer.status.status == 3">done</mat-icon>
+                  <mat-icon *ngIf="oportunity.offer.status.status == 4" style="color: red;">not_interested</mat-icon>
+                </div>
                 <mat-progress-bar mode="determinate" [value]="oportunity.offer.status | offerProgress">
                 </mat-progress-bar>
+
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-expansion-panel-content fxLayout="column" fxLayoutAlign="space-between">
@@ -206,8 +212,9 @@
                 <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
                   fxLayoutAlign="end">
 
-                  <div mat-dialog-actions fxLayoutAlign="end center">
-                    <button mat-button (click)="offerAction()">{{oportunity.offer.status | offerAction : user}}</button>
+                  <div mat-dialog-actions class="actions-container" fxLayoutAlign="end center">
+                    <button mat-button (click)="offerAction(oportunity)">
+                      {{oportunity.offer.status | offerAction : user}}</button>
                   </div>
 
                 </div>

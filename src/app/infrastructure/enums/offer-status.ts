@@ -1,7 +1,7 @@
 export enum OStatus {
   Created,
-  HeadQuartersApproved,
-  SendToClient,
-  ClientAccepted,
-  ClientRejected
+  Approved,
+  Send,
+  Accepted,
+  Rejected
 }

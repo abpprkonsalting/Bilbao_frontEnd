@@ -5,11 +5,11 @@
     <mat-label>Client response</mat-label>
     <mat-divider class="create-account-divider"></mat-divider>
     <mat-button-toggle-group #group="matButtonToggleGroup" style="width:100%">
-      <mat-button-toggle value="accepted" style="width:50%">
+      <mat-button-toggle value="accepted" (change)="selectionChanged($event)" style="width:50%">
         <mat-icon>check</mat-icon>
 
       </mat-button-toggle>
-      <mat-button-toggle value="rejected"  style="width:50%">
+      <mat-button-toggle value="rejected" (change)="selectionChanged($event)" style="width:50%">
         <mat-icon>close</mat-icon>
 
       </mat-button-toggle>
@@ -19,11 +19,10 @@
 
     <mat-form-field appearance="outline" ngClass.xs="mobile" *ngIf="group.value == 'rejected'">
       <mat-label>Reason</mat-label>
-      <mat-select class="">
-        <mat-option></mat-option>
-        <!-- <mat-option *ngFor="let key of paymentMethodsKeys" [value]="key">
-          {{paymentMethods[key]}}
-        </mat-option> -->
+      <mat-select class="" [(value)]="selectedReason" (selectionChange)="selectedReasonChanged($event)">
+        <mat-option *ngFor="let key of rejectedReasonsKeys" [value]="key">
+          {{rejectedReasons[key]}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
