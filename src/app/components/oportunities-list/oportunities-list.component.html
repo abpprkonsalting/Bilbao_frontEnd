@@ -14,13 +14,19 @@
       <mat-expansion-panel #expansionpanel class="whole-oportunity" (afterCollapse)="afterPanelCollapse(oportunity)"
         *ngFor="let oportunity of oportunities; let i = index" cdkDrag>
         <mat-expansion-panel-header>
-          <mat-panel-description>
+          <mat-panel-description style="align-items: center;padding-right: 20px;">
+            <div fxLayout="row" style="margin-right:10px;">
+              <mat-icon *ngIf="oportunity.offer == undefined || (oportunity.offer != undefined && oportunity.offer.status.status < 1)">outlined_flag</mat-icon>
+              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 1">check_circle_outline</mat-icon>
+              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 2"> mail_outline</mat-icon>
+              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 3 && oportunity.contract == undefined">done</mat-icon>
+              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 4 && oportunity.contract == undefined" style="color: red;">not_interested</mat-icon>
+            </div>
             <span>{{getRequestHeader(oportunity.request)}}</span>
           </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-expansion-panel-content class="oportunity-properties" fxLayout="row wrap" fxLayoutAlign="end" cdkDropList
           id="{{ 'list-' + (i + 1)}}" (cdkDropListDropped)="dropPart($event,oportunity)">
-          <mat-progress-bar class="oportunity-progress" mode="determinate" value="40"></mat-progress-bar>
 
           <mat-expansion-panel #request class="oportunity-request oportunity-component">
             <mat-expansion-panel-header>
