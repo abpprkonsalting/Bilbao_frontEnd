@@ -3,7 +3,7 @@
 <div class="app-body">
 
   <div *ngIf="user.id !=0" class="users-area" fxLayout="row"  fxLayout.xs="column-reverse" fxLayoutAlign="center">
-    <oportunities-list [user]="user" class="list" ngClass.xs="mobile" (itemDrop)="onDropItem($event)"></oportunities-list>
+    <oportunities-list [user]="user" class="list" ngClass.xs="mobile" (itemDrop)="onDropItem($event)" style="height: 700px;"></oportunities-list>
     <oportunities-parts-repo class="repo" ngClass.xs="mobile" [dropListArray]="dropListArray"></oportunities-parts-repo>
   </div>
   <div *ngIf="user.id == 0" class="welcome-area">
