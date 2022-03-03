@@ -1,5 +1,6 @@
 export enum CStatus {
   Created,
+  Send,
   SignedClient,
   OnTransit,
   Delivered,

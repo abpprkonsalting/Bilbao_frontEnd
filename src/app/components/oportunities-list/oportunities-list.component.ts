@@ -16,6 +16,7 @@ import { Currency } from 'src/app/infrastructure/enums/currency';
 import { OStatus } from 'src/app/infrastructure/enums/offer-status';
 import { PaymentMethod } from 'src/app/infrastructure/enums/payment-method';
 import { OfferCloseDialogComponent } from '../offer-close-dialog/offer-close-dialog.component';
+import { DeliveryConditions } from 'src/app/infrastructure/enums/delivery-conditions';
 
 @Component({
   selector: 'oportunities-list',
@@ -50,6 +51,9 @@ export class OportunitiesListComponent implements OnInit {
   paymentMethods = PaymentMethod
   paymentMethodsKeys: any = []
 
+  deliveryConditions = DeliveryConditions
+  deliveryConditionsKeys: any = []
+
   @Output() itemDrop: EventEmitter<CdkDragDrop<BusinessOportunity[]>>
 
   constructor( @Optional() public offerCloseDialog: MatDialog) {
@@ -61,6 +65,7 @@ export class OportunitiesListComponent implements OnInit {
     this.currenciesKeys = Object.keys(this.currencies).filter(f => !isNaN(Number(f)));
     this.offerStatusKeys = Object.keys(this.offerStatuses).filter(f => !isNaN(Number(f)));
     this.paymentMethodsKeys = Object.keys(this.paymentMethods).filter(f => !isNaN(Number(f)));
+    this.deliveryConditionsKeys = Object.keys(this.deliveryConditions).filter(f => !isNaN(Number(f)));
     this.oportunities = []
     this.allDropListsIds = [];
     this.itemDrop = new EventEmitter();

@@ -16,11 +16,15 @@
         <mat-expansion-panel-header>
           <mat-panel-description style="align-items: center;padding-right: 20px;">
             <div fxLayout="row" style="margin-right:10px;">
-              <mat-icon *ngIf="oportunity.offer == undefined || (oportunity.offer != undefined && oportunity.offer.status.status < 1)">outlined_flag</mat-icon>
+              <mat-icon *ngIf="oportunity.offer == undefined ||
+                               (oportunity.offer != undefined && oportunity.offer.status.status < 1)">outlined_flag</mat-icon>
               <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 1">check_circle_outline</mat-icon>
               <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 2"> mail_outline</mat-icon>
-              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 3 && oportunity.contract == undefined">done</mat-icon>
-              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 4 && oportunity.contract == undefined" style="color: red;">not_interested</mat-icon>
+              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 3">done</mat-icon>
+              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 4" style="color: red;">not_interested</mat-icon>
+              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 0">outlined_flag</mat-icon>
+              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 1">mail_outline</mat-icon>
+              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 2"> check_circle_outline</mat-icon>
             </div>
             <span>{{getRequestHeader(oportunity.request)}}</span>
           </mat-panel-description>
@@ -229,18 +233,64 @@
             </mat-expansion-panel-content>
           </mat-expansion-panel>
 
-          <mat-expansion-panel *ngIf="oportunity.contract != undefined" #offer
+          <mat-expansion-panel *ngIf="oportunity.contract != undefined" #contract
             class="oportunity-contract oportunity-component">
             <mat-expansion-panel-header>
-              <mat-panel-description style="align-items: center;
-              padding-right: 20px;">
-                <span style="margin-right: 20px;">
-
+              <mat-panel-description style="align-items: center;padding-right: 20px;">
+                <span>
+                  {{oportunity.contract.type}}
                 </span>
+                <div fxLayout="row" style="margin: 0 10px;">
+                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 0">outlined_flag</mat-icon>
+                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 1">mail_outline</mat-icon>
+                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 2"> check_circle_outline</mat-icon>
+                </div>
                 <mat-progress-bar mode="determinate" [value]="40"></mat-progress-bar>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-expansion-panel-content fxLayout="column" fxLayoutAlign="space-between">
+
+              <div class="oportunity-component-section" fxLayout="column">
+                <div class="oportunity-component-section-header">
+                  <mat-label>Prices</mat-label>
+                </div>
+                <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
+                  fxLayoutAlign="end">
+
+                  <mat-form-field appearance="outline" ngClass.xs="mobile">
+                    <mat-label>Total</mat-label>
+                    <input matInput [(ngModel)]="oportunity.contract.amount" [disabled]="user | userNotAdmin"
+                      style="text-align: right" class="">
+                  </mat-form-field>
+
+                  <div class="oportunity-component-divider"></div>
+
+                  <mat-form-field appearance="outline" ngClass.xs="mobile">
+                    <mat-label>Currency</mat-label>
+                    <mat-select class="" [(value)]="oportunity.contract.currency" [disabled]="user | userNotAdmin">
+                      <mat-option></mat-option>
+                      <mat-option *ngFor="let key of currenciesKeys" [value]="key">
+                        {{currencies[key]}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                </div>
+                <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
+                  fxLayoutAlign="end">
+
+                  <mat-form-field appearance="outline" ngClass.xs="mobile">
+                    <mat-label>Delivery conditions</mat-label>
+                    <mat-select class="" [(value)]="oportunity.contract.deliveryConditions">
+                      <mat-option></mat-option>
+                      <mat-option *ngFor="let key of deliveryConditionsKeys" [value]="key">
+                        {{deliveryConditions[key]}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                </div>
+              </div>
             </mat-expansion-panel-content>
           </mat-expansion-panel>
 
