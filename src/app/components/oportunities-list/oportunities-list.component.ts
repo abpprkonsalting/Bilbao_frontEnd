@@ -111,7 +111,8 @@ export class OportunitiesListComponent implements OnInit {
   }
 
   canContractBeMade(oportunity: BusinessOportunity): boolean {
-    if (oportunity.offer != undefined && oportunity.contract == undefined) return true
+    if (oportunity.contract == undefined && oportunity.offer != undefined &&
+        oportunity.offer.status.status == OStatus.Accepted) return true
     return false
   }
 
