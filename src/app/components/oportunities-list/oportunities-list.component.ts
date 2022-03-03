@@ -151,6 +151,8 @@ export class OportunitiesListComponent implements OnInit {
         }
         case OStatus.Send: {
           const dialogRef = this.offerCloseDialog.open(OfferCloseDialogComponent, {
+            hasBackdrop: true,
+            disableClose: true,
             data: {
               offerStatus: business.offer.status.status,
               rejectedReason: business.offer.rejectedReason
