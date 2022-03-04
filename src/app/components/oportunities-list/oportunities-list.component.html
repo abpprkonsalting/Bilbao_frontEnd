@@ -17,14 +17,31 @@
           <mat-panel-description style="align-items: center;padding-right: 20px;">
             <div fxLayout="row" style="margin-right:10px;">
               <mat-icon *ngIf="oportunity.offer == undefined ||
-                               (oportunity.offer != undefined && oportunity.offer.status.status < 1)">outlined_flag</mat-icon>
-              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 1">check_circle_outline</mat-icon>
-              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 2"> mail_outline</mat-icon>
+                               (oportunity.offer != undefined && oportunity.offer.status.status < 1)">outlined_flag
+              </mat-icon>
+              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 1">
+                check_circle_outline</mat-icon>
+              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 2"> mail_outline
+              </mat-icon>
               <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 3">done</mat-icon>
-              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 4" style="color: red;">not_interested</mat-icon>
-              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 0">outlined_flag</mat-icon>
-              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 1">mail_outline</mat-icon>
-              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 2"> check_circle_outline</mat-icon>
+              <mat-icon *ngIf="oportunity.offer != undefined && oportunity.offer.status.status == 4"
+                style="color: red;">not_interested</mat-icon>
+              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 0">outlined_flag
+              </mat-icon>
+              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 1">mail_outline
+              </mat-icon>
+              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 2">
+                check_circle_outline</mat-icon>
+              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 3">
+                local_shipping</mat-icon>
+              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 4">done
+              </mat-icon>
+              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 5">verified_user
+              </mat-icon>
+              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 6">
+                sentiment_satisfied_alt</mat-icon>
+              <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 7">attach_money
+              </mat-icon>
             </div>
             <span>{{getRequestHeader(oportunity.request)}}</span>
           </mat-panel-description>
@@ -241,11 +258,25 @@
                   {{oportunity.contract.type}}
                 </span>
                 <div fxLayout="row" style="margin: 0 10px;">
-                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 0">outlined_flag</mat-icon>
-                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 1">mail_outline</mat-icon>
-                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 2"> check_circle_outline</mat-icon>
+                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 0">
+                    outlined_flag</mat-icon>
+                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 1">
+                    mail_outline</mat-icon>
+                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 2">
+                    check_circle_outline</mat-icon>
+                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 3">
+                    local_shipping</mat-icon>
+                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 4">done
+                  </mat-icon>
+                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 5">
+                    verified_user</mat-icon>
+                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 6">
+                    sentiment_satisfied_alt</mat-icon>
+                  <mat-icon *ngIf="oportunity.contract != undefined && oportunity.contract.status.status == 7">
+                    attach_money</mat-icon>
+
                 </div>
-                <mat-progress-bar mode="determinate" [value]="40"></mat-progress-bar>
+                <mat-progress-bar mode="determinate" [value]="oportunity.contract.status | contractProgress"></mat-progress-bar>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-expansion-panel-content fxLayout="column" fxLayoutAlign="space-between">
@@ -288,6 +319,21 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
+
+                </div>
+              </div>
+              <div class="oportunity-component-section" fxLayout="column">
+                <div class="oportunity-component-section-header">
+                  <mat-label>Actions</mat-label>
+                </div>
+
+                <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
+                  fxLayoutAlign="end">
+
+                  <div mat-dialog-actions class="actions-container" fxLayoutAlign="end center">
+                    <button mat-button (click)="contractAction(oportunity)">
+                      {{oportunity.contract.status | contractAction : user}}</button>
+                  </div>
 
                 </div>
               </div>

@@ -17,6 +17,7 @@ import { OStatus } from 'src/app/infrastructure/enums/offer-status';
 import { PaymentMethod } from 'src/app/infrastructure/enums/payment-method';
 import { OfferCloseDialogComponent } from '../offer-close-dialog/offer-close-dialog.component';
 import { DeliveryConditions } from 'src/app/infrastructure/enums/delivery-conditions';
+import { CStatus } from 'src/app/infrastructure/enums/contract-status';
 
 @Component({
   selector: 'oportunities-list',
@@ -176,6 +177,43 @@ export class OportunitiesListComponent implements OnInit {
         }
         case OStatus.Rejected: {
           business.offer.status.status = OStatus.Send
+        }
+      }
+    }
+  }
+
+  contractAction(business: BusinessOportunity): void {
+
+    if (business.contract) {
+      let contract = business.contract
+      switch(contract.status.status){
+        case CStatus.Created: {
+          contract.status.status = CStatus.Send
+          break
+        }
+        case CStatus.Send: {
+          contract.status.status = CStatus.Signed
+          break
+        }
+        case CStatus.Signed: {
+          contract.status.status = CStatus.OnTransit
+          break
+        }
+        case CStatus.OnTransit: {
+          contract.status.status = CStatus.Delivered
+          break
+        }
+        case CStatus.Delivered: {
+          contract.status.status = CStatus.ClientReceived
+          break
+        }
+        case CStatus.ClientReceived: {
+          contract.status.status = CStatus.ClientAccepted
+          break
+        }
+        case CStatus.ClientAccepted: {
+          contract.status.status = CStatus.ClientPaid
+          break
         }
       }
     }
