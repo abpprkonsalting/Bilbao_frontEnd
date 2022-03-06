@@ -12,7 +12,7 @@ export class OfferActionPipe implements PipeTransform {
   transform(offerStatus: OfferStatus, user: User): string {
     switch (offerStatus.status) {
       case OStatus.Created: {
-        if (user.roles.some(entry => entry === 'ADMIN')) {
+        if (user.roles.some(entry => entry === 'ROLE_ADMIN')) {
           return "Approve"
         }
         return ""
