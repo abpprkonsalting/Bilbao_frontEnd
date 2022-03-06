@@ -7,7 +7,7 @@ import { SessionToken } from '../infrastructure/model/sessionToken';
 
 import { User } from '../infrastructure/model/user';
 import { HttpService } from './http.service';
-
+import { LoginDialogData } from '../infrastructure/interfaces/login-dialog-data-interface'
 
 @Injectable()
 export class WebStorageService {
@@ -55,10 +55,10 @@ export class WebStorageService {
     } else { return of(this.user); }
   }
 
-  public registerUser(user: User, rememberme?: boolean): Observable<User> {
+  public registerUser(data: LoginDialogData): Observable<User> {
 
-    this.saveRememberMe(rememberme!);
-    return this.httpService.registerUser(user).pipe(
+    this.saveRememberMe(data.rememberme);
+    return this.httpService.registerUser(data).pipe(
       switchMap((response: any) => {
         this.user = this.setUserFromJWToken(response.token);
         return of(this.user);

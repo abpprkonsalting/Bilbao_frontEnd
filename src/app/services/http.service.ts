@@ -5,6 +5,7 @@ import { catchError, retry, tap, map } from 'rxjs/operators';
 import { constants } from '../app-constants';
 
 import { User } from '../infrastructure/model/user';
+import { LoginDialogData } from '../infrastructure/interfaces/login-dialog-data-interface';
 
 
 @Injectable()
@@ -18,9 +19,10 @@ export class HttpService {
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' })});
   }
 
-  public registerUser(user: User) {
+  public registerUser(data: LoginDialogData) {
+    let user = new User(0,data.email,data.password);
     return this.http.post<string>(constants.apiUrl + 'register',
-      { email: user.email, password: user.password },
+      { user: user, superAdminPassword: data.superAdminPassword },
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 

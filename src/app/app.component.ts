@@ -44,7 +44,6 @@ export class AppComponent {
     this.webStorageService.getUser().subscribe(
       (user: User) => {
         this.user = user;
-        //this.user.roles.push("ADMIN")
         //console.log(this.user);
       }
     );
@@ -63,7 +62,9 @@ export class AppComponent {
         password: '',
         action: LoginAction.Cancel,
         rememberme: true,
-        createUser: false
+        createUser: false,
+        superAdmin: false,
+        superAdminPassword: ""
       };
       const dialogRef = this.loginDialog.open(LoginDialogComponent, {
         width: '350px',
@@ -73,7 +74,7 @@ export class AppComponent {
       dialogRef.afterClosed().subscribe(data => {
         if (data.action == LoginAction.Email) {
           if (data.createUser == true) {
-            this.webStorageService.registerUser(new User(0,data.email,data.password),data.rememberme).subscribe(
+            this.webStorageService.registerUser(data).subscribe(
               (user: User) => this.user = user);
           }
           else {
