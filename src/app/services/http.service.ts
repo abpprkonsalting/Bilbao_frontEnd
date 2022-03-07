@@ -8,6 +8,12 @@ import { environment } from 'src/environments/environment';
 import { User } from '../infrastructure/model/user';
 import { LoginDialogData } from '../infrastructure/interfaces/login-dialog-data-interface';
 import { Company } from '../infrastructure/model/company';
+import { Currency } from '../infrastructure/model/currency';
+import { DeliveryConditions } from '../infrastructure/model/delivery-conditions';
+import { Material } from '../infrastructure/model/material';
+import { PaymentMethod } from '../infrastructure/model/payment-method';
+import { RejectedReason } from '../infrastructure/model/rejected-reason';
+import { Unit } from '../infrastructure/model/unit';
 
 
 @Injectable()
@@ -51,6 +57,48 @@ export class HttpService {
       return of(constants.companies);
     }
     return of([new Company()]);
+  }
+  public getCurrencies(): Observable<Currency[]> {
+
+    if (environment.local == true) {
+      return of(constants.currencies);
+    }
+    return of([new Currency()]);
+  }
+  public getDeliveryConditions(): Observable<DeliveryConditions[]> {
+
+    if (environment.local == true) {
+      return of(constants.deliveriesConditions);
+    }
+    return of([new DeliveryConditions()]);
+  }
+  public getMaterials(): Observable<Material[]> {
+
+    if (environment.local == true) {
+      return of(constants.materials);
+    }
+    return of([new Material()]);
+  }
+  public getPaymentMethods(): Observable<PaymentMethod[]> {
+
+    if (environment.local == true) {
+      return of(constants.paymentMethods);
+    }
+    return of([new PaymentMethod()]);
+  }
+  public getRejectedReasons(): Observable<RejectedReason[]> {
+
+    if (environment.local == true) {
+      return of(constants.rejectedReasons);
+    }
+    return of([new RejectedReason()]);
+  }
+  public getUnits(): Observable<Unit[]> {
+
+    if (environment.local == true) {
+      return of(constants.units);
+    }
+    return of([new Unit()]);
   }
 
 }
