@@ -93,8 +93,8 @@
                       <mat-label i18n>Requested Material</mat-label>
                       <mat-select class="" [(value)]="oportunity.request.requestedMaterial">
                         <mat-option></mat-option>
-                        <mat-option *ngFor="let key of requestedMaterialKeys" [value]="key">
-                          {{requestedMaterials[key]}}
+                        <mat-option *ngFor="let material of objectsStore.materials | async" [value]="material">
+                          {{material.name}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -107,8 +107,8 @@
                       <mat-label  i18n>Final Client</mat-label>
                       <mat-select class="" [(value)]="oportunity.request.finalClient">
                         <mat-option></mat-option>
-                        <mat-option *ngFor="let key of finalClientsKeys" [value]="key">
-                          {{finalClients[key]}}
+                        <mat-option *ngFor="let company of objectsStore.companies | async" [value]="company">
+                          {{company.name}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -128,8 +128,8 @@
                         <mat-label i18n>Unit</mat-label>
                         <mat-select class="" [(value)]="oportunity.request.unit">
                           <mat-option></mat-option>
-                          <mat-option *ngFor="let key of unitsKeys" [value]="key">
-                            {{units[key]}}
+                          <mat-option *ngFor="let unit of objectsStore.units | async" [value]="unit">
+                            {{unit.name}}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
@@ -218,8 +218,8 @@
                     <mat-label i18n>Currency</mat-label>
                     <mat-select class="" [(value)]="oportunity.offer.currency" [disabled]="user | userNotAdmin">
                       <mat-option></mat-option>
-                      <mat-option *ngFor="let key of currenciesKeys" [value]="key">
-                        {{currencies[key]}}
+                      <mat-option *ngFor="let currency of objectsStore.currencies | async" [value]="currency">
+                        {{currency.name}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -232,8 +232,8 @@
                     <mat-label i18n>Payment Method</mat-label>
                     <mat-select class="" [(value)]="oportunity.offer.paymentMethod">
                       <mat-option></mat-option>
-                      <mat-option *ngFor="let key of paymentMethodsKeys" [value]="key">
-                        {{paymentMethods[key]}}
+                      <mat-option *ngFor="let paymentMethod of objectsStore.paymentMethods | async" [value]="paymentMethod">
+                        {{paymentMethod.name}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -311,8 +311,8 @@
                     <mat-label i18n>Currency</mat-label>
                     <mat-select class="" [(value)]="oportunity.contract.currency" [disabled]="user | userNotAdmin">
                       <mat-option></mat-option>
-                      <mat-option *ngFor="let key of currenciesKeys" [value]="key">
-                        {{currencies[key]}}
+                      <mat-option *ngFor="let currency of objectsStore.currencies | async" [value]="currency">
+                        {{currency.name}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -325,8 +325,8 @@
                     <mat-label i18n>Delivery conditions</mat-label>
                     <mat-select class="" [(value)]="oportunity.contract.deliveryConditions">
                       <mat-option></mat-option>
-                      <mat-option *ngFor="let key of deliveryConditionsKeys" [value]="key">
-                        {{deliveryConditions[key]}}
+                      <mat-option *ngFor="let deliveryConditions of objectsStore.deliveryConditions | async" [value]="deliveryConditions">
+                        {{deliveryConditions.name}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
