@@ -48,6 +48,12 @@ export class AppComponent {
         this.user = user;
         //console.log(this.user);
         this.objectStore.loadCompanies()
+        this.objectStore.loadCurrencies()
+        this.objectStore.loadDeliveryConditions()
+        this.objectStore.loadMaterials()
+        this.objectStore.loadPaymentMethods()
+        this.objectStore.loadRejectedReasons()
+        this.objectStore.loadUnits
       }
     );
   }
