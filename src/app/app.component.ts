@@ -11,6 +11,7 @@ import { constants } from './app-constants';
 import { LoginAction } from 'src/app/infrastructure/enums/login-action';
 import { LoginDialogData } from 'src/app/infrastructure/interfaces/login-dialog-data-interface';
 import { WebStorageService } from './services/webstorage.service';
+import { ObjectsStoreService } from './services/objects-store.service';
 import { BusinessOportunity } from './infrastructure/model/business-oportunity';
 
 
@@ -26,7 +27,8 @@ export class AppComponent {
   dropListCount: number = 1;
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer,
-    @Optional() public loginDialog: MatDialog, private webStorageService: WebStorageService) {
+    @Optional() public loginDialog: MatDialog, private webStorageService: WebStorageService,
+    private objectStore: ObjectsStoreService) {
 
     this.user = new User();
 
@@ -44,8 +46,8 @@ export class AppComponent {
     this.webStorageService.getUser().subscribe(
       (user: User) => {
         this.user = user;
-        //this.user.roles.push("ADMIN")
         //console.log(this.user);
+        this.objectStore.loadCompanies()
       }
     );
   }
@@ -63,7 +65,9 @@ export class AppComponent {
         password: '',
         action: LoginAction.Cancel,
         rememberme: true,
-        createUser: false
+        createUser: false,
+        superAdmin: false,
+        superAdminPassword: ""
       };
       const dialogRef = this.loginDialog.open(LoginDialogComponent, {
         width: '350px',
@@ -73,7 +77,7 @@ export class AppComponent {
       dialogRef.afterClosed().subscribe(data => {
         if (data.action == LoginAction.Email) {
           if (data.createUser == true) {
-            this.webStorageService.registerUser(new User(0,data.email,data.password),data.rememberme).subscribe(
+            this.webStorageService.registerUser(data).subscribe(
               (user: User) => this.user = user);
           }
           else {

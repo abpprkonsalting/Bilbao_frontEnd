@@ -1,10 +1,10 @@
 export enum CStatus {
   Created,
   Send,
-  SignedClient,
+  Signed,
   OnTransit,
   Delivered,
   ClientReceived,
-  ClienteAccepted,
+  ClientAccepted,
   ClientPaid
 }

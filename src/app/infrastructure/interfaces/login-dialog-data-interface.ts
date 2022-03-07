@@ -6,4 +6,6 @@ export interface LoginDialogData {
     action: LoginAction;
     rememberme: boolean;
     createUser: boolean;
+    superAdmin: boolean;
+    superAdminPassword: string;
   }

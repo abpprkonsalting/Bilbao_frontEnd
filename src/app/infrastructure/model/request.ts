@@ -3,10 +3,11 @@ import { Material } from "../enums/material";
 import { FinalClient } from "../enums/final-client";
 import { Unit } from "../enums/unit";
 import { OportunityPart } from "./oportunity-part";
+import { Company } from "./company";
 
 export class Request extends OportunityPart {
 
-  importerCompany?: ImporterCompany;
+  importerCompany?: Company;
   specialist?: string;
   requestedMaterial?: Material;
   finalClient?: FinalClient;

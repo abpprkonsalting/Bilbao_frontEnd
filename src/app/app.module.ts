@@ -41,6 +41,8 @@ import { UserNotAdminPipe } from './infrastructure/pipes/user-not-admin.pipe';
 import { OfferProgressPipe } from './infrastructure/pipes/offer-status-to-progress.pipe';
 import { OfferActionPipe } from './infrastructure/pipes/offer-action.pipe';
 import { OfferCloseDialogComponent } from './components/offer-close-dialog/offer-close-dialog.component';
+import { ContractActionPipe } from './infrastructure/pipes/contract-action.pipe';
+import { ContractProgressPipe } from './infrastructure/pipes/contract-progress.pipe';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { OfferCloseDialogComponent } from './components/offer-close-dialog/offer
     UserNotAdminPipe,
     OfferProgressPipe,
     OfferActionPipe,
-    OfferCloseDialogComponent
+    OfferCloseDialogComponent,
+    ContractActionPipe,
+    ContractProgressPipe
   ],
   imports: [
     BrowserModule,

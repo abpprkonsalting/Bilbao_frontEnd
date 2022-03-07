@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, retry, tap, map } from 'rxjs/operators';
 import { constants } from '../app-constants';
+import { environment } from 'src/environments/environment';
 
 import { User } from '../infrastructure/model/user';
+import { LoginDialogData } from '../infrastructure/interfaces/login-dialog-data-interface';
+import { Company } from '../infrastructure/model/company';
 
 
 @Injectable()
@@ -18,9 +21,10 @@ export class HttpService {
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' })});
   }
 
-  public registerUser(user: User) {
+  public registerUser(data: LoginDialogData) {
+    let user = new User(0,data.email,data.password);
     return this.http.post<string>(constants.apiUrl + 'register',
-      { email: user.email, password: user.password },
+      { user: user, superAdminPassword: data.superAdminPassword },
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 
@@ -39,6 +43,14 @@ export class HttpService {
         map((body: any) => body as User),
         catchError((e: any) => throwError(() => new Error(e)))
       );
+  }
+
+  public getCompanies(): Observable<Company[]> {
+
+    if (environment.local == true) {
+      return of(constants.companies);
+    }
+    return of([new Company()]);
   }
 
 }

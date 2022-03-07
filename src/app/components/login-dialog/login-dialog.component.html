@@ -1,12 +1,13 @@
 <div class="dialog-wrapper">
   <div class="login-create-account">
     <button mat-flat-button target="_blank" (click)="toggleCreateUser()" [disabled]="createUser == false">Login</button>
-    <button mat-flat-button target="_blank" (click)="toggleCreateUser()" [disabled]="createUser == true">Join Now</button>
+    <button mat-flat-button target="_blank" (click)="toggleCreateUser()" [disabled]="createUser == true">Join
+      Now</button>
   </div>
   <mat-divider class="create-account-divider"></mat-divider>
   <div mat-dialog-content>
     <mat-form-field>
-      <mat-label>Email</mat-label>
+      <mat-label i18n>Email</mat-label>
       <input matInput placeholder="pat@example.com" [formControl]="email" required>
       <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
     </mat-form-field>
@@ -14,7 +15,8 @@
     <form [formGroup]="loginForm">
       <mat-form-field>
         <input matInput type="password" placeholder="Password" formControlName="password" required>
-        <mat-error *ngIf="loginForm.hasError('required', 'password') || loginForm.controls['password'].hasError('minlength')">
+        <mat-error
+          *ngIf="loginForm.hasError('required', 'password') || loginForm.controls['password'].hasError('minlength')">
           {{getPasswordErrorMessage()}}
         </mat-error>
       </mat-form-field>
@@ -22,16 +24,23 @@
       <mat-form-field *ngIf="createUser">
         <input matInput type="password" placeholder="Confirm password" formControlName="confirmpassword"
           [errorStateMatcher]="matcher">
-        <mat-error *ngIf="loginForm.hasError('mismatch')">
+        <mat-error *ngIf="loginForm.hasError('mismatch')" i18n>
           Passwords do not match
         </mat-error>
       </mat-form-field>
     </form>
+    <div *ngIf="createUser" class="super-admin-section">
+      <mat-checkbox class="super-admin" [(ngModel)]="data.superAdmin">Make admin</mat-checkbox>
+      <mat-form-field *ngIf="data.superAdmin">
+        <input matInput type="password" [(ngModel)]="data.superAdminPassword" placeholder="Super admin password">
+      </mat-form-field>
+    </div>
+
   </div>
   <div mat-dialog-actions fxLayoutAlign="space-around center">
-    <button mat-button (click)="onClick()" cdkFocusInitial [disabled]="createUser == false ? (email.invalid || password.invalid) 
+    <button mat-button (click)="onClick()" cdkFocusInitial [disabled]="createUser == false ? (email.invalid || password.invalid)
                                           : (email.invalid || password.invalid || loginForm.invalid)">Ok</button>
-    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button (click)="onCancel()" i18n>Cancel</button>
   </div>
-  <mat-checkbox class="remember-me" [(ngModel)]="data.rememberme">Remember me</mat-checkbox>
+  <mat-checkbox class="remember-me" [(ngModel)]="data.rememberme" i18n>Remember me</mat-checkbox>
 </div>

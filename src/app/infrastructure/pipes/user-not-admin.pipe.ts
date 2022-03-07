@@ -8,7 +8,7 @@ import { User } from '../model/user';
 export class UserNotAdminPipe implements PipeTransform {
 
   transform(value: User): boolean {
-    return !value.roles.some(entry => entry === 'ADMIN');
+    return !value.roles.some(entry => entry === 'ROLE_ADMIN');
   }
 
 }
