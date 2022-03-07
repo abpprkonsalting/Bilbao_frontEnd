@@ -14,7 +14,7 @@
                         style="height: 37px;"></a>
 
                 <div *ngIf="user.roles.length > 0 && user.email != null && user.email != ''" fxHide.xs
-                    style="margin: 0 auto 0 20px;color:#3f51b5">Bienvenido:  {{user.email}}</div>
+                    style="margin: 0 auto 0 20px;color:#3f51b5" ><ng-container i18n>Bienvenido:</ng-container> {{user.email}}</div>
 
                 <div ngStyle.xs="margin-left:auto;">
 

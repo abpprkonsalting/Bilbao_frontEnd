@@ -4,7 +4,7 @@
 
     <div class=list-header fxLayoutAlign="end">
       <div class="list-title">
-        <span>Business Oportunities</span>
+        <span i18n>Business Oportunities</span>
       </div>
     </div>
 
@@ -70,7 +70,7 @@
                     fxLayoutAlign="space-between">
 
                     <mat-form-field appearance="outline" ngClass.xs="mobile">
-                      <mat-label>Importer Company</mat-label>
+                      <mat-label i18n>Importer Company</mat-label>
                       <mat-select class="importer-company" [value]="oportunity.request.importerCompany"
                         [formControl]="formControlObj" [compareWith]="compareCompanyObjects">
                         <mat-option>
@@ -90,7 +90,7 @@
                     <div class="oportunity-component-divider"></div>
 
                     <mat-form-field appearance="outline" ngClass.xs="mobile">
-                      <mat-label>Requested Material</mat-label>
+                      <mat-label i18n>Requested Material</mat-label>
                       <mat-select class="" [(value)]="oportunity.request.requestedMaterial">
                         <mat-option></mat-option>
                         <mat-option *ngFor="let key of requestedMaterialKeys" [value]="key">
@@ -104,7 +104,7 @@
                     fxLayoutAlign="space-between">
 
                     <mat-form-field appearance="outline" ngClass.xs="mobile">
-                      <mat-label>Final Client</mat-label>
+                      <mat-label  i18n>Final Client</mat-label>
                       <mat-select class="" [(value)]="oportunity.request.finalClient">
                         <mat-option></mat-option>
                         <mat-option *ngFor="let key of finalClientsKeys" [value]="key">
@@ -117,7 +117,7 @@
 
                     <div class="oportunity-component-form-fields-subrow" fxLayout="row" ngClass.xs="mobile">
                       <mat-form-field appearance="outline" ngClass.xs="mobile">
-                        <mat-label>Quantity</mat-label>
+                        <mat-label i18n>Quantity</mat-label>
                         <input matInput placeholder="Quantity" [(ngModel)]="oportunity.request.quantity"
                           style="text-align: right" class="">
                       </mat-form-field>
@@ -125,7 +125,7 @@
                       <div class="oportunity-component-divider"></div>
 
                       <mat-form-field appearance="outline" ngClass.xs="mobile">
-                        <mat-label>Unit</mat-label>
+                        <mat-label i18n>Unit</mat-label>
                         <mat-select class="" [(value)]="oportunity.request.unit">
                           <mat-option></mat-option>
                           <mat-option *ngFor="let key of unitsKeys" [value]="key">
@@ -140,7 +140,7 @@
                     fxLayoutAlign="end">
 
                     <mat-form-field appearance="outline" ngClass.xs="mobile">
-                      <mat-label>Offer date</mat-label>
+                      <mat-label  i18n>Offer date</mat-label>
                       <input matInput [(ngModel)]="oportunity.request.date" [matDatepicker]="requestDatePicker">
                       <mat-datepicker-toggle matSuffix [for]="requestDatePicker">
                         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -162,11 +162,11 @@
 
                   </div>
                 </div>
-                <div mat-dialog-actions class="actions-container" fxLayoutAlign="end center">
-                  <button mat-button (click)="SaveRequest(oportunity.request)"
-                    [disabled]="getRequestProgress(oportunity.request) != 100">Save</button>
-                </div>
-              </form>
+              </div>
+              <div mat-dialog-actions class="actions-container" fxLayoutAlign="end center">
+                <button mat-button (click)="SaveRequest(oportunity.request)"
+                  [disabled]="getRequestProgress(oportunity.request) != 100" i18n>Save</button>
+              </div>
             </mat-expansion-panel-content>
           </mat-expansion-panel>
 
@@ -192,13 +192,13 @@
 
               <div class="oportunity-component-section" fxLayout="column">
                 <div class="oportunity-component-section-header">
-                  <mat-label>Prices</mat-label>
+                  <mat-label i18n>Prices</mat-label>
                 </div>
                 <div class="oportunity-component-form-fields-row three-elements" fxLayout="row" fxLayout.xs="column"
                   fxLayoutAlign="end">
 
                   <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Amount FOB</mat-label>
+                    <mat-label i18n>Amount FOB</mat-label>
                     <input matInput [(ngModel)]="oportunity.offer.amountFob" [disabled]="user | userNotAdmin"
                       style="text-align: right" class="">
                   </mat-form-field>
@@ -206,7 +206,7 @@
                   <div class="oportunity-component-divider"></div>
 
                   <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Total</mat-label>
+                    <mat-label i18n>Total</mat-label>
                     <input matInput [(ngModel)]="oportunity.offer.amountTotal" [disabled]="user | userNotAdmin"
                       style="text-align: right" class="">
                   </mat-form-field>
@@ -214,7 +214,7 @@
                   <div class="oportunity-component-divider"></div>
 
                   <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Currency</mat-label>
+                    <mat-label i18n>Currency</mat-label>
                     <mat-select class="" [(value)]="oportunity.offer.currency" [disabled]="user | userNotAdmin">
                       <mat-option></mat-option>
                       <mat-option *ngFor="let key of currenciesKeys" [value]="key">
@@ -228,7 +228,7 @@
                   fxLayoutAlign="end">
 
                   <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Payment Method</mat-label>
+                    <mat-label i18n>Payment Method</mat-label>
                     <mat-select class="" [(value)]="oportunity.offer.paymentMethod">
                       <mat-option></mat-option>
                       <mat-option *ngFor="let key of paymentMethodsKeys" [value]="key">
@@ -242,7 +242,7 @@
 
               <div class="oportunity-component-section" fxLayout="column">
                 <div class="oportunity-component-section-header">
-                  <mat-label>Actions</mat-label>
+                  <mat-label i18n>Actions</mat-label>
                 </div>
 
                 <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
@@ -293,13 +293,13 @@
 
               <div class="oportunity-component-section" fxLayout="column">
                 <div class="oportunity-component-section-header">
-                  <mat-label>Prices</mat-label>
+                  <mat-label i18n>Prices</mat-label>
                 </div>
                 <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
                   fxLayoutAlign="end">
 
                   <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Total</mat-label>
+                    <mat-label i18n>Total</mat-label>
                     <input matInput [(ngModel)]="oportunity.contract.amount" [disabled]="user | userNotAdmin"
                       style="text-align: right" class="">
                   </mat-form-field>
@@ -307,7 +307,7 @@
                   <div class="oportunity-component-divider"></div>
 
                   <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Currency</mat-label>
+                    <mat-label i18n>Currency</mat-label>
                     <mat-select class="" [(value)]="oportunity.contract.currency" [disabled]="user | userNotAdmin">
                       <mat-option></mat-option>
                       <mat-option *ngFor="let key of currenciesKeys" [value]="key">
@@ -321,7 +321,7 @@
                   fxLayoutAlign="end">
 
                   <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Delivery conditions</mat-label>
+                    <mat-label i18n>Delivery conditions</mat-label>
                     <mat-select class="" [(value)]="oportunity.contract.deliveryConditions">
                       <mat-option></mat-option>
                       <mat-option *ngFor="let key of deliveryConditionsKeys" [value]="key">
