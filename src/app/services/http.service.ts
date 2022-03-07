@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, retry, tap, map } from 'rxjs/operators';
 import { constants } from '../app-constants';
+import { environment } from 'src/environments/environment';
 
 import { User } from '../infrastructure/model/user';
 import { LoginDialogData } from '../infrastructure/interfaces/login-dialog-data-interface';
+import { Company } from '../infrastructure/model/company';
 
 
 @Injectable()
@@ -41,6 +43,14 @@ export class HttpService {
         map((body: any) => body as User),
         catchError((e: any) => throwError(() => new Error(e)))
       );
+  }
+
+  public getCompanies(): Observable<Company[]> {
+
+    if (environment.local == true) {
+      return of(constants.companies);
+    }
+    return of([new Company()]);
   }
 
 }

@@ -62,102 +62,111 @@
 
             </mat-expansion-panel-header>
             <mat-expansion-panel-content fxLayout="column" fxLayoutAlign="space-between">
+              <form [formGroup]="requestForm">
+                <div class="oportunity-component-section" fxLayout="column">
+                  <div class="oportunity-component-section-header">
+                  </div>
+                  <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
+                    fxLayoutAlign="space-between">
 
-              <div class="oportunity-component-section" fxLayout="column">
-                <div class="oportunity-component-section-header">
-                </div>
-                <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
-                  fxLayoutAlign="space-between">
-
-                  <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Importer Company</mat-label>
-                    <mat-select class="importer-company" [(value)]="oportunity.request.importerCompany">
-                      <mat-option></mat-option>
-                      <mat-option *ngFor="let key of importerCompaniesKeys" [value]="key">
-                        {{importerCompanies[key]}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-
-                  <div class="oportunity-component-divider"></div>
-
-                  <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Requested Material</mat-label>
-                    <mat-select class="" [(value)]="oportunity.request.requestedMaterial">
-                      <mat-option></mat-option>
-                      <mat-option *ngFor="let key of requestedMaterialKeys" [value]="key">
-                        {{requestedMaterials[key]}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-
-                </div>
-                <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
-                  fxLayoutAlign="space-between">
-
-                  <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Final Client</mat-label>
-                    <mat-select class="" [(value)]="oportunity.request.finalClient">
-                      <mat-option></mat-option>
-                      <mat-option *ngFor="let key of finalClientsKeys" [value]="key">
-                        {{finalClients[key]}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-
-                  <div class="oportunity-component-divider"></div>
-
-                  <div class="oportunity-component-form-fields-subrow" fxLayout="row" ngClass.xs="mobile">
                     <mat-form-field appearance="outline" ngClass.xs="mobile">
-                      <mat-label>Quantity</mat-label>
-                      <input matInput placeholder="Quantity" [(ngModel)]="oportunity.request.quantity"
-                        style="text-align: right" class="">
+                      <mat-label>Importer Company</mat-label>
+                      <mat-select class="importer-company" [value]="oportunity.request.importerCompany"
+                        [formControl]="formControlObj" [compareWith]="compareCompanyObjects">
+                        <mat-option>
+                          <input #input matInput placeholder="new company" [(ngModel)]="newCompanyName"
+                            (click)="$event.stopPropagation()"
+                            (keydown.Enter)="addCompany(newCompanyName,oportunity.request,input)"
+                            [ngModelOptions]="{standalone: true}">
+                        </mat-option>
+                        <mat-option *ngFor="let company of objectsStore.companies | async" [value]="company">
+                          {{company.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+
+
+                    <div class="oportunity-component-divider"></div>
+
+                    <mat-form-field appearance="outline" ngClass.xs="mobile">
+                      <mat-label>Requested Material</mat-label>
+                      <mat-select class="" [(value)]="oportunity.request.requestedMaterial">
+                        <mat-option></mat-option>
+                        <mat-option *ngFor="let key of requestedMaterialKeys" [value]="key">
+                          {{requestedMaterials[key]}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                  </div>
+                  <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
+                    fxLayoutAlign="space-between">
+
+                    <mat-form-field appearance="outline" ngClass.xs="mobile">
+                      <mat-label>Final Client</mat-label>
+                      <mat-select class="" [(value)]="oportunity.request.finalClient">
+                        <mat-option></mat-option>
+                        <mat-option *ngFor="let key of finalClientsKeys" [value]="key">
+                          {{finalClients[key]}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <div class="oportunity-component-divider"></div>
+
+                    <div class="oportunity-component-form-fields-subrow" fxLayout="row" ngClass.xs="mobile">
+                      <mat-form-field appearance="outline" ngClass.xs="mobile">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput placeholder="Quantity" [(ngModel)]="oportunity.request.quantity"
+                          style="text-align: right" class="">
+                      </mat-form-field>
+
+                      <div class="oportunity-component-divider"></div>
+
+                      <mat-form-field appearance="outline" ngClass.xs="mobile">
+                        <mat-label>Unit</mat-label>
+                        <mat-select class="" [(value)]="oportunity.request.unit">
+                          <mat-option></mat-option>
+                          <mat-option *ngFor="let key of unitsKeys" [value]="key">
+                            {{units[key]}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                  </div>
+                  <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
+                    fxLayoutAlign="end">
+
+                    <mat-form-field appearance="outline" ngClass.xs="mobile">
+                      <mat-label>Offer date</mat-label>
+                      <input matInput [(ngModel)]="oportunity.request.date" [matDatepicker]="requestDatePicker">
+                      <mat-datepicker-toggle matSuffix [for]="requestDatePicker">
+                        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                      </mat-datepicker-toggle>
+                      <mat-datepicker #requestDatePicker></mat-datepicker>
                     </mat-form-field>
 
                     <div class="oportunity-component-divider"></div>
 
                     <mat-form-field appearance="outline" ngClass.xs="mobile">
-                      <mat-label>Unit</mat-label>
-                      <mat-select class="" [(value)]="oportunity.request.unit">
-                        <mat-option></mat-option>
-                        <mat-option *ngFor="let key of unitsKeys" [value]="key">
-                          {{units[key]}}
-                        </mat-option>
-                      </mat-select>
+                      <mat-label>Valid until</mat-label>
+                      <input matInput [(ngModel)]="oportunity.request.validUntil"
+                        [matDatepicker]="requestValidUntilPicker">
+                      <mat-datepicker-toggle matSuffix [for]="requestValidUntilPicker">
+                        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                      </mat-datepicker-toggle>
+                      <mat-datepicker #requestValidUntilPicker></mat-datepicker>
                     </mat-form-field>
+
                   </div>
-
                 </div>
-                <div class="oportunity-component-form-fields-row" fxLayout="row" fxLayout.xs="column"
-                  fxLayoutAlign="end">
-
-                  <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Offer date</mat-label>
-                    <input matInput [(ngModel)]="oportunity.request.date" [matDatepicker]="requestDatePicker">
-                    <mat-datepicker-toggle matSuffix [for]="requestDatePicker">
-                      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #requestDatePicker></mat-datepicker>
-                  </mat-form-field>
-
-                  <div class="oportunity-component-divider"></div>
-
-                  <mat-form-field appearance="outline" ngClass.xs="mobile">
-                    <mat-label>Valid until</mat-label>
-                    <input matInput [(ngModel)]="oportunity.request.validUntil"
-                      [matDatepicker]="requestValidUntilPicker">
-                    <mat-datepicker-toggle matSuffix [for]="requestValidUntilPicker">
-                      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #requestValidUntilPicker></mat-datepicker>
-                  </mat-form-field>
-
+                <div mat-dialog-actions class="actions-container" fxLayoutAlign="end center">
+                  <button mat-button (click)="SaveRequest(oportunity.request)"
+                    [disabled]="getRequestProgress(oportunity.request) != 100">Save</button>
                 </div>
-              </div>
-              <div mat-dialog-actions class="actions-container" fxLayoutAlign="end center">
-                <button mat-button (click)="SaveRequest(oportunity.request)"
-                  [disabled]="getRequestProgress(oportunity.request) != 100">Save</button>
-              </div>
+              </form>
             </mat-expansion-panel-content>
           </mat-expansion-panel>
 
@@ -276,7 +285,8 @@
                     attach_money</mat-icon>
 
                 </div>
-                <mat-progress-bar mode="determinate" [value]="oportunity.contract.status | contractProgress"></mat-progress-bar>
+                <mat-progress-bar mode="determinate" [value]="oportunity.contract.status | contractProgress">
+                </mat-progress-bar>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-expansion-panel-content fxLayout="column" fxLayoutAlign="space-between">

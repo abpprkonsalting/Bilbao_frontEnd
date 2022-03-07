@@ -11,6 +11,7 @@ import { constants } from './app-constants';
 import { LoginAction } from 'src/app/infrastructure/enums/login-action';
 import { LoginDialogData } from 'src/app/infrastructure/interfaces/login-dialog-data-interface';
 import { WebStorageService } from './services/webstorage.service';
+import { ObjectsStoreService } from './services/objects-store.service';
 import { BusinessOportunity } from './infrastructure/model/business-oportunity';
 
 
@@ -26,7 +27,8 @@ export class AppComponent {
   dropListCount: number = 1;
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer,
-    @Optional() public loginDialog: MatDialog, private webStorageService: WebStorageService) {
+    @Optional() public loginDialog: MatDialog, private webStorageService: WebStorageService,
+    private objectStore: ObjectsStoreService) {
 
     this.user = new User();
 
@@ -45,6 +47,7 @@ export class AppComponent {
       (user: User) => {
         this.user = user;
         //console.log(this.user);
+        this.objectStore.loadCompanies()
       }
     );
   }
